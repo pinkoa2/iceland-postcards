@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T20:58:21+00:00",
+  "title": "Design System: Trailmark",
+  "extensions": {
+    "colorMeta": {
+      "title": {
+        "role": "primary",
+        "displayName": "Airmail Title",
+        "canonical": "oklch(0.380 0.141 264.7)",
+        "tonalRamp": [
+          "oklch(0.150 0.141 264.7)",
+          "oklch(0.264 0.141 264.7)",
+          "oklch(0.379 0.141 264.7)",
+          "oklch(0.493 0.141 264.7)",
+          "oklch(0.607 0.141 264.7)",
+          "oklch(0.721 0.141 264.7)",
+          "oklch(0.836 0.141 264.7)",
+          "oklch(0.950 0.141 264.7)"
+        ]
+      },
+      "airmail-red": {
+        "role": "secondary",
+        "displayName": "Airmail Red",
+        "canonical": "oklch(0.573 0.199 28.2)",
+        "tonalRamp": [
+          "oklch(0.150 0.199 28.2)",
+          "oklch(0.264 0.199 28.2)",
+          "oklch(0.379 0.199 28.2)",
+          "oklch(0.493 0.199 28.2)",
+          "oklch(0.607 0.199 28.2)",
+          "oklch(0.721 0.199 28.2)",
+          "oklch(0.836 0.199 28.2)",
+          "oklch(0.950 0.199 28.2)"
+        ]
+      },
+      "airmail-blue": {
+        "role": "secondary",
+        "displayName": "Airmail Blue",
+        "canonical": "oklch(0.441 0.172 265.3)",
+        "tonalRamp": [
+          "oklch(0.150 0.172 265.3)",
+          "oklch(0.264 0.172 265.3)",
+          "oklch(0.379 0.172 265.3)",
+          "oklch(0.493 0.172 265.3)",
+          "oklch(0.607 0.172 265.3)",
+          "oklch(0.721 0.172 265.3)",
+          "oklch(0.836 0.172 265.3)",
+          "oklch(0.950 0.172 265.3)"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Paper Table",
+        "canonical": "oklch(0.924 0.007 132.4)",
+        "tonalRamp": [
+          "oklch(0.150 0.007 132.4)",
+          "oklch(0.264 0.007 132.4)",
+          "oklch(0.379 0.007 132.4)",
+          "oklch(0.493 0.007 132.4)",
+          "oklch(0.607 0.007 132.4)",
+          "oklch(0.721 0.007 132.4)",
+          "oklch(0.836 0.007 132.4)",
+          "oklch(0.950 0.007 132.4)"
+        ]
+      },
+      "ground-shade": {
+        "role": "neutral",
+        "displayName": "Table Shade",
+        "canonical": "oklch(0.883 0.010 131.4)",
+        "tonalRamp": [
+          "oklch(0.150 0.010 131.4)",
+          "oklch(0.264 0.010 131.4)",
+          "oklch(0.379 0.010 131.4)",
+          "oklch(0.493 0.010 131.4)",
+          "oklch(0.607 0.010 131.4)",
+          "oklch(0.721 0.010 131.4)",
+          "oklch(0.836 0.010 131.4)",
+          "oklch(0.950 0.010 131.4)"
+        ]
+      },
+      "on-ground": {
+        "role": "neutral",
+        "displayName": "Table Ink",
+        "canonical": "oklch(0.248 0.035 271.7)",
+        "tonalRamp": [
+          "oklch(0.150 0.035 271.7)",
+          "oklch(0.264 0.035 271.7)",
+          "oklch(0.379 0.035 271.7)",
+          "oklch(0.493 0.035 271.7)",
+          "oklch(0.607 0.035 271.7)",
+          "oklch(0.721 0.035 271.7)",
+          "oklch(0.836 0.035 271.7)",
+          "oklch(0.950 0.035 271.7)"
+        ]
+      },
+      "on-ground-soft": {
+        "role": "neutral",
+        "displayName": "Soft Table Ink",
+        "canonical": "oklch(0.444 0.036 270.5)",
+        "tonalRamp": [
+          "oklch(0.150 0.036 270.5)",
+          "oklch(0.264 0.036 270.5)",
+          "oklch(0.379 0.036 270.5)",
+          "oklch(0.493 0.036 270.5)",
+          "oklch(0.607 0.036 270.5)",
+          "oklch(0.721 0.036 270.5)",
+          "oklch(0.836 0.036 270.5)",
+          "oklch(0.950 0.036 270.5)"
+        ]
+      },
+      "on-ground-faint": {
+        "role": "neutral",
+        "displayName": "Faint Table Ink",
+        "canonical": "oklch(0.561 0.032 272.2)",
+        "tonalRamp": [
+          "oklch(0.150 0.032 272.2)",
+          "oklch(0.264 0.032 272.2)",
+          "oklch(0.379 0.032 272.2)",
+          "oklch(0.493 0.032 272.2)",
+          "oklch(0.607 0.032 272.2)",
+          "oklch(0.721 0.032 272.2)",
+          "oklch(0.836 0.032 272.2)",
+          "oklch(0.950 0.032 272.2)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "canonical": "oklch(0.991 0.003 106.4)",
+        "tonalRamp": [
+          "oklch(0.150 0.003 106.4)",
+          "oklch(0.264 0.003 106.4)",
+          "oklch(0.379 0.003 106.4)",
+          "oklch(0.493 0.003 106.4)",
+          "oklch(0.607 0.003 106.4)",
+          "oklch(0.721 0.003 106.4)",
+          "oklch(0.836 0.003 106.4)",
+          "oklch(0.950 0.003 106.4)"
+        ]
+      },
+      "card-shade": {
+        "role": "neutral",
+        "displayName": "Card Shade",
+        "canonical": "oklch(0.946 0.007 124.5)",
+        "tonalRamp": [
+          "oklch(0.150 0.007 124.5)",
+          "oklch(0.264 0.007 124.5)",
+          "oklch(0.379 0.007 124.5)",
+          "oklch(0.493 0.007 124.5)",
+          "oklch(0.607 0.007 124.5)",
+          "oklch(0.721 0.007 124.5)",
+          "oklch(0.836 0.007 124.5)",
+          "oklch(0.950 0.007 124.5)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Print Ink",
+        "canonical": "oklch(0.248 0.035 271.7)",
+        "tonalRamp": [
+          "oklch(0.150 0.035 271.7)",
+          "oklch(0.264 0.035 271.7)",
+          "oklch(0.379 0.035 271.7)",
+          "oklch(0.493 0.035 271.7)",
+          "oklch(0.607 0.035 271.7)",
+          "oklch(0.721 0.035 271.7)",
+          "oklch(0.836 0.035 271.7)",
+          "oklch(0.950 0.035 271.7)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(0.460 0.039 271.6)",
+        "tonalRamp": [
+          "oklch(0.150 0.039 271.6)",
+          "oklch(0.264 0.039 271.6)",
+          "oklch(0.379 0.039 271.6)",
+          "oklch(0.493 0.039 271.6)",
+          "oklch(0.607 0.039 271.6)",
+          "oklch(0.721 0.039 271.6)",
+          "oklch(0.836 0.039 271.6)",
+          "oklch(0.950 0.039 271.6)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.884 0.009 258.3)",
+        "tonalRamp": [
+          "oklch(0.150 0.009 258.3)",
+          "oklch(0.264 0.009 258.3)",
+          "oklch(0.379 0.009 258.3)",
+          "oklch(0.493 0.009 258.3)",
+          "oklch(0.607 0.009 258.3)",
+          "oklch(0.721 0.009 258.3)",
+          "oklch(0.836 0.009 258.3)",
+          "oklch(0.950 0.009 258.3)"
+        ]
+      },
+      "sea": {
+        "role": "neutral",
+        "displayName": "Sea",
+        "canonical": "oklch(0.933 0.016 248.0)",
+        "tonalRamp": [
+          "oklch(0.150 0.016 248.0)",
+          "oklch(0.264 0.016 248.0)",
+          "oklch(0.379 0.016 248.0)",
+          "oklch(0.493 0.016 248.0)",
+          "oklch(0.607 0.016 248.0)",
+          "oklch(0.721 0.016 248.0)",
+          "oklch(0.836 0.016 248.0)",
+          "oklch(0.950 0.016 248.0)"
+        ]
+      },
+      "land": {
+        "role": "neutral",
+        "displayName": "Land",
+        "canonical": "oklch(0.969 0.008 98.9)",
+        "tonalRamp": [
+          "oklch(0.150 0.008 98.9)",
+          "oklch(0.264 0.008 98.9)",
+          "oklch(0.379 0.008 98.9)",
+          "oklch(0.493 0.008 98.9)",
+          "oklch(0.607 0.008 98.9)",
+          "oklch(0.721 0.008 98.9)",
+          "oklch(0.836 0.008 98.9)",
+          "oklch(0.950 0.008 98.9)"
+        ]
+      },
+      "land-edge": {
+        "role": "neutral",
+        "displayName": "Coast",
+        "canonical": "oklch(0.807 0.023 256.7)",
+        "tonalRamp": [
+          "oklch(0.150 0.023 256.7)",
+          "oklch(0.264 0.023 256.7)",
+          "oklch(0.379 0.023 256.7)",
+          "oklch(0.493 0.023 256.7)",
+          "oklch(0.607 0.023 256.7)",
+          "oklch(0.721 0.023 256.7)",
+          "oklch(0.836 0.023 256.7)",
+          "oklch(0.950 0.023 256.7)"
+        ]
+      },
+      "context-route": {
+        "role": "neutral",
+        "displayName": "Other Days",
+        "canonical": "oklch(0.835 0.017 262.7)",
+        "tonalRamp": [
+          "oklch(0.150 0.017 262.7)",
+          "oklch(0.264 0.017 262.7)",
+          "oklch(0.379 0.017 262.7)",
+          "oklch(0.493 0.017 262.7)",
+          "oklch(0.607 0.017 262.7)",
+          "oklch(0.721 0.017 262.7)",
+          "oklch(0.836 0.017 262.7)",
+          "oklch(0.950 0.017 262.7)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Signal Amber",
+        "canonical": "oklch(0.750 0.155 80.4)",
+        "tonalRamp": [
+          "oklch(0.150 0.155 80.4)",
+          "oklch(0.264 0.155 80.4)",
+          "oklch(0.379 0.155 80.4)",
+          "oklch(0.493 0.155 80.4)",
+          "oklch(0.607 0.155 80.4)",
+          "oklch(0.721 0.155 80.4)",
+          "oklch(0.836 0.155 80.4)",
+          "oklch(0.950 0.155 80.4)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Trip title on the cover in Airmail Title; 125% width, uppercase, moderate size. From 960px: clamp(5rem, 8.4vw, 8.5rem)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Day title on each card back; 125% width, uppercase, balanced."
+      },
+      "printed": {
+        "displayName": "Printed",
+        "purpose": "Place name printed across a photo front; uppercase, white with soft text-shadow."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Trip summary on the table under the byline."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Card-back message, max 60ch."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Day names in the trip index and nav list."
+      },
+      "label": {
+        "displayName": "Postal Caps",
+        "purpose": "Bylines, distances, map captions, postmark rings, stamp trip line, counters; 75% width, uppercase, tracked, tabular numerals."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Print captions on the table in Soft Table Ink."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-card",
+        "value": "0 1px 0 #dcdfd9, 0 2px 0 #c3c7c0, 0 3px 3px rgb(22 32 64 / 0.1), 0 10px 22px -8px rgb(22 32 64 / 0.18), 0 36px 60px -28px rgb(22 32 64 / 0.28)",
+        "purpose": "Card stock: postcards, map cards, cover stack, dropdown, lightbox media, prints on hover. The first two layers are the card's own edge."
+      },
+      {
+        "name": "shadow-print",
+        "value": "0 1px 0 #d3d6d0, 0 2px 3px rgb(22 32 64 / 0.12), 0 12px 22px -12px rgb(22 32 64 / 0.3)",
+        "purpose": "Loose prints at rest (under a 1px card-shade edge) and the day nav mark."
+      },
+      {
+        "name": "stamp-drop",
+        "value": "drop-shadow(0 1px 1px rgb(6 18 58 / 0.25)) drop-shadow(0 3px 5px rgb(6 18 58 / 0.18))",
+        "purpose": "Filter on the perforated stamp so the perforations cast."
+      },
+      {
+        "name": "printed-text",
+        "value": "0 1px 2px rgb(0 0 0 / 0.55), 0 0 18px rgb(0 0 0 / 0.35)",
+        "purpose": "Text-shadow under white printed place names on photos, for legibility."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing for every transition and animation."
+      },
+      {
+        "name": "deal",
+        "value": "900ms ease-out; map card +45ms, back +90ms",
+        "purpose": "Front, map card and back settle from 6-9deg off and 70-90px low to their rest angle as a day enters view."
+      },
+      {
+        "name": "postmark-strike",
+        "value": "520ms ease-out, 620ms delay; scale 1.6 -> 0.94 -> 1",
+        "purpose": "The postmark lands on the card back after the deal."
+      },
+      {
+        "name": "lift",
+        "value": "300ms ease-out; translate 0 -4px",
+        "purpose": "Paper lifts on hover."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "html.motion only when prefers-reduced-motion is not reduce",
+        "purpose": "Without motion, cards rest in place and postmarks are already struck."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "960px"
+      },
+      {
+        "name": "prints-wide",
+        "value": "700px (container width)"
+      },
+      {
+        "name": "lightbox-compact",
+        "value": "max-width 640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Postcard Front",
+      "kind": "card",
+      "refersTo": "postcard-front",
+      "description": "Picture postcard: even card border, photo, place name printed across the bottom; opens the lightbox.",
+      "html": "<button class=\"ds-front\" type=\"button\"><span class=\"ds-front-photo\"></span><span class=\"ds-front-printed\">Blue Lagoon</span></button>",
+      "css": ".ds-front { position: relative; display: block; width: 280px; padding: 9px; border: 0; background: var(--card, #fcfcfa); box-shadow: var(--shadow-card, 0 1px 0 #dcdfd9, 0 2px 0 #c3c7c0, 0 3px 3px rgb(22 32 64 / 0.1), 0 10px 22px -8px rgb(22 32 64 / 0.18), 0 36px 60px -28px rgb(22 32 64 / 0.28)); rotate: -2deg; cursor: zoom-in; transition: rotate 900ms cubic-bezier(0.16,1,0.3,1), translate 300ms cubic-bezier(0.16,1,0.3,1); } .ds-front:hover { rotate: -1deg; translate: 0 -4px; } .ds-front:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; } .ds-front-photo { display: block; height: 190px; background: linear-gradient(160deg, #7fb4d8, #2c5a7a 60%, #1f2a30); } .ds-front-printed { position: absolute; left: 22px; bottom: 20px; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.85rem; font-stretch: 112%; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / 0.55), 0 0 18px rgb(0 0 0 / 0.35); }"
+    },
+    {
+      "name": "Day Map Card",
+      "kind": "card",
+      "refersTo": "day-map-card",
+      "description": "The day's drive: coastline, other days faint, this day's route in the day ink over a card casing, numbered pins matching the stop list, caption with km/stops and the Google Maps link.",
+      "html": "<figure class=\"ds-mapcard\" style=\"--day: oklch(0.5 0.14 150)\"><svg viewBox=\"0 0 300 190\"><rect width=\"300\" height=\"190\" fill=\"#e1eaf3\"/><path d=\"M20 170 C 40 90, 90 40, 170 30 S 290 60, 280 170 Z\" fill=\"#f6f5ef\" stroke=\"#b7c1cf\" stroke-width=\"1.2\" stroke-linejoin=\"round\"/><path d=\"M60 150 L 110 120 L 150 140\" fill=\"none\" stroke=\"#c3c9d4\" stroke-width=\"3\" stroke-linecap=\"round\"/><g fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M70 120 L 120 80 L 180 95 L 235 60\" stroke=\"#fcfcfa\" stroke-width=\"12\"/><path d=\"M70 120 L 120 80 L 180 95 L 235 60\" stroke=\"var(--day)\" stroke-width=\"5.5\"/></g><g transform=\"translate(70 120)\"><circle r=\"17\" fill=\"var(--day)\" stroke=\"#fcfcfa\" stroke-width=\"3\"/><text y=\"6.5\" font-size=\"18\" text-anchor=\"middle\" fill=\"#fff\" font-weight=\"800\">1</text></g><g transform=\"translate(120 80)\"><circle r=\"14\" fill=\"#fcfcfa\" stroke=\"var(--day)\" stroke-width=\"3\"/><text y=\"5.5\" font-size=\"15\" text-anchor=\"middle\" fill=\"var(--day)\" font-weight=\"800\">2</text></g><g transform=\"translate(235 60)\"><circle r=\"17\" fill=\"var(--day)\" stroke=\"#fcfcfa\" stroke-width=\"3\"/><text y=\"6.5\" font-size=\"18\" text-anchor=\"middle\" fill=\"#fff\" font-weight=\"800\">3</text></g></svg><figcaption><span>212 km · 3 stops</span><a href=\"#\">Open in Google Maps <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a></figcaption></figure>",
+      "css": ".ds-mapcard { margin: 0; width: 340px; padding: 10px 10px 0; background: var(--card, #fcfcfa); color: var(--ink, #1b2032); box-shadow: var(--shadow-card, 0 1px 0 #dcdfd9, 0 2px 0 #c3c7c0, 0 3px 3px rgb(22 32 64 / 0.1), 0 10px 22px -8px rgb(22 32 64 / 0.18), 0 36px 60px -28px rgb(22 32 64 / 0.28)); rotate: 1.1deg; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-mapcard > svg { display: block; width: 100%; height: auto; border: 1px solid var(--rule, #d5d9df); } .ds-mapcard figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 16px; min-height: 46px; padding: 6px 4px; } .ds-mapcard span { font-stretch: 75%; font-weight: 700; font-size: 0.86rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft, #50576e); font-variant-numeric: tabular-nums; } .ds-mapcard a { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; font-weight: 650; font-size: 0.92rem; color: var(--day); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--day) 40%, transparent); text-underline-offset: 0.22em; } .ds-mapcard a:hover { text-decoration-color: currentColor; } .ds-mapcard a:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; }"
+    },
+    {
+      "name": "Postcard Back",
+      "kind": "card",
+      "refersTo": "postcard-back",
+      "description": "The written side: airmail chevrons, day headline, message and itinerary numbered in the day ink.",
+      "html": "<article class=\"ds-back\" style=\"--day: oklch(0.5 0.14 50)\"><h2>Arrival &amp; Blue Lagoon</h2><p>We picked up the rental car and made our way to the lagoon.</p><ol><li><span>1</span>Airport</li><li><span>2</span>Blue Lagoon</li></ol></article>",
+      "css": ".ds-back { width: 320px; padding: 20px 20px 22px; border: 9px solid transparent; border-image: repeating-linear-gradient(-45deg, var(--airmail-red) 0 9px, var(--card) 9px 16px, var(--airmail-blue) 16px 25px, var(--card) 25px 32px) 9; background: var(--card, #fcfcfa); color: var(--ink, #1b2032); box-shadow: var(--shadow-card, 0 1px 0 #dcdfd9, 0 2px 0 #c3c7c0, 0 3px 3px rgb(22 32 64 / 0.1), 0 10px 22px -8px rgb(22 32 64 / 0.18), 0 36px 60px -28px rgb(22 32 64 / 0.28)); rotate: 1.2deg; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-back h2 { margin: 0; font-size: 1.7rem; font-stretch: 125%; font-weight: 850; line-height: 0.98; letter-spacing: -0.02em; text-transform: uppercase; } .ds-back p { margin: 14px 0 0; font-size: 1rem; line-height: 1.6; } .ds-back ol { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--rule, #d5d9df); } .ds-back li { display: flex; gap: 12px; padding: 9px 0 7px; border-bottom: 1px solid var(--rule, #d5d9df); font-size: 0.98rem; font-weight: 560; } .ds-back li span { width: 1.4em; font-stretch: 75%; font-weight: 750; color: var(--day); font-variant-numeric: tabular-nums; } .ds-back a { display: inline-block; margin-top: 14px; font-weight: 650; font-size: 0.95rem; color: var(--day); text-decoration-color: color-mix(in oklch, var(--day) 40%, transparent); text-underline-offset: 0.22em; } .ds-back a:hover { text-decoration-color: currentColor; } .ds-back a:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; }"
+    },
+    {
+      "name": "Postmark",
+      "kind": "custom",
+      "refersTo": "postmark",
+      "description": "Circular rubber-stamp mark in the day ink: place on top, measured facts below, big figure in the centre, multiplied into the paper.",
+      "html": "<div class=\"ds-pm-paper\"><svg class=\"ds-pm\" viewBox=\"0 0 120 120\" style=\"--ink: oklch(0.5 0.14 150)\"><defs><path id=\"ds-pm-t\" d=\"M 17 60 A 43 43 0 0 1 103 60\"/><path id=\"ds-pm-b\" d=\"M 10 60 A 50 50 0 0 0 110 60\"/></defs><g fill=\"none\" stroke=\"var(--ink)\"><circle cx=\"60\" cy=\"60\" r=\"56\" stroke-width=\"2.6\"/><circle cx=\"60\" cy=\"60\" r=\"35\" stroke-width=\"1.4\"/></g><g fill=\"var(--ink)\"><text class=\"ds-pm-ring\" font-size=\"10.5\"><textPath href=\"#ds-pm-t\" startOffset=\"50%\" text-anchor=\"middle\">Golden Circle</textPath></text><text class=\"ds-pm-ring\" font-size=\"10.5\"><textPath href=\"#ds-pm-b\" startOffset=\"50%\" text-anchor=\"middle\">212 km · 6 stops</textPath></text><text class=\"ds-pm-label\" x=\"60\" y=\"49\" text-anchor=\"middle\" font-size=\"9\">DAY</text><text class=\"ds-pm-fig\" x=\"60\" y=\"80\" text-anchor=\"middle\" font-size=\"32\">2</text></g></svg></div>",
+      "css": ".ds-pm-paper { display: inline-block; padding: 16px; background: var(--card, #fcfcfa); } .ds-pm { width: 140px; rotate: -6deg; opacity: 0.9; mix-blend-mode: multiply; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-pm-ring { font-stretch: 75%; font-weight: 650; letter-spacing: 0.12em; text-transform: uppercase; } .ds-pm-label { font-stretch: 75%; font-weight: 700; letter-spacing: 0.3em; } .ds-pm-fig { font-stretch: 125%; font-weight: 850; letter-spacing: -0.02em; }"
+    },
+    {
+      "name": "Stamp",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Perforated picture stamp: a crop of the day's photo multiplied with 28% day ink, white value numeral, trip title along the bottom.",
+      "html": "<svg class=\"ds-stamp\" viewBox=\"0 0 100 124\"><defs><mask id=\"ds-perf\"><rect width=\"100\" height=\"124\" fill=\"#fff\"/><g fill=\"#000\"><circle cx=\"4\" cy=\"0\" r=\"2.7\"/><circle cx=\"4\" cy=\"124\" r=\"2.7\"/><circle cx=\"12\" cy=\"0\" r=\"2.7\"/><circle cx=\"12\" cy=\"124\" r=\"2.7\"/><circle cx=\"20\" cy=\"0\" r=\"2.7\"/><circle cx=\"20\" cy=\"124\" r=\"2.7\"/><circle cx=\"28\" cy=\"0\" r=\"2.7\"/><circle cx=\"28\" cy=\"124\" r=\"2.7\"/><circle cx=\"36\" cy=\"0\" r=\"2.7\"/><circle cx=\"36\" cy=\"124\" r=\"2.7\"/><circle cx=\"44\" cy=\"0\" r=\"2.7\"/><circle cx=\"44\" cy=\"124\" r=\"2.7\"/><circle cx=\"52\" cy=\"0\" r=\"2.7\"/><circle cx=\"52\" cy=\"124\" r=\"2.7\"/><circle cx=\"60\" cy=\"0\" r=\"2.7\"/><circle cx=\"60\" cy=\"124\" r=\"2.7\"/><circle cx=\"68\" cy=\"0\" r=\"2.7\"/><circle cx=\"68\" cy=\"124\" r=\"2.7\"/><circle cx=\"76\" cy=\"0\" r=\"2.7\"/><circle cx=\"76\" cy=\"124\" r=\"2.7\"/><circle cx=\"84\" cy=\"0\" r=\"2.7\"/><circle cx=\"84\" cy=\"124\" r=\"2.7\"/><circle cx=\"92\" cy=\"0\" r=\"2.7\"/><circle cx=\"92\" cy=\"124\" r=\"2.7\"/><circle cx=\"100\" cy=\"0\" r=\"2.7\"/><circle cx=\"100\" cy=\"124\" r=\"2.7\"/><circle cx=\"0\" cy=\"4\" r=\"2.7\"/><circle cx=\"100\" cy=\"4\" r=\"2.7\"/><circle cx=\"0\" cy=\"12\" r=\"2.7\"/><circle cx=\"100\" cy=\"12\" r=\"2.7\"/><circle cx=\"0\" cy=\"20\" r=\"2.7\"/><circle cx=\"100\" cy=\"20\" r=\"2.7\"/><circle cx=\"0\" cy=\"28\" r=\"2.7\"/><circle cx=\"100\" cy=\"28\" r=\"2.7\"/><circle cx=\"0\" cy=\"36\" r=\"2.7\"/><circle cx=\"100\" cy=\"36\" r=\"2.7\"/><circle cx=\"0\" cy=\"44\" r=\"2.7\"/><circle cx=\"100\" cy=\"44\" r=\"2.7\"/><circle cx=\"0\" cy=\"52\" r=\"2.7\"/><circle cx=\"100\" cy=\"52\" r=\"2.7\"/><circle cx=\"0\" cy=\"60\" r=\"2.7\"/><circle cx=\"100\" cy=\"60\" r=\"2.7\"/><circle cx=\"0\" cy=\"68\" r=\"2.7\"/><circle cx=\"100\" cy=\"68\" r=\"2.7\"/><circle cx=\"0\" cy=\"76\" r=\"2.7\"/><circle cx=\"100\" cy=\"76\" r=\"2.7\"/><circle cx=\"0\" cy=\"84\" r=\"2.7\"/><circle cx=\"100\" cy=\"84\" r=\"2.7\"/><circle cx=\"0\" cy=\"92\" r=\"2.7\"/><circle cx=\"100\" cy=\"92\" r=\"2.7\"/><circle cx=\"0\" cy=\"100\" r=\"2.7\"/><circle cx=\"100\" cy=\"100\" r=\"2.7\"/><circle cx=\"0\" cy=\"108\" r=\"2.7\"/><circle cx=\"100\" cy=\"108\" r=\"2.7\"/><circle cx=\"0\" cy=\"116\" r=\"2.7\"/><circle cx=\"100\" cy=\"116\" r=\"2.7\"/><circle cx=\"0\" cy=\"124\" r=\"2.7\"/><circle cx=\"100\" cy=\"124\" r=\"2.7\"/></g></mask><linearGradient id=\"ds-photo\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#2f5fa8\"/><stop offset=\"0.6\" stop-color=\"#6f9fd8\"/><stop offset=\"1\" stop-color=\"#3b4a3c\"/></linearGradient></defs><g mask=\"url(#ds-perf)\"><rect width=\"100\" height=\"124\" fill=\"#fbfbf8\"/><rect x=\"9\" y=\"9\" width=\"82\" height=\"92\" fill=\"url(#ds-photo)\"/><rect x=\"9\" y=\"9\" width=\"82\" height=\"92\" fill=\"oklch(0.5 0.14 310)\" opacity=\"0.28\" style=\"mix-blend-mode: multiply\"/><text class=\"ds-stamp-v\" x=\"14\" y=\"27\" fill=\"#fff\">2</text><text class=\"ds-stamp-c\" x=\"50\" y=\"116\" text-anchor=\"middle\" fill=\"oklch(0.5 0.14 310)\">ICELAND</text></g></svg>",
+      "css": ".ds-stamp { width: 104px; rotate: 2deg; filter: drop-shadow(0 1px 1px rgb(6 18 58 / 0.25)) drop-shadow(0 3px 5px rgb(6 18 58 / 0.18)); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-stamp-v { font-size: 17px; font-stretch: 125%; font-weight: 850; } .ds-stamp-c { font-size: 9px; font-stretch: 75%; font-weight: 750; letter-spacing: 0.28em; }"
+    },
+    {
+      "name": "Loose Print",
+      "kind": "card",
+      "refersTo": "print",
+      "description": "A thin print at a small stable angle, captioned below; lifts on hover and opens the lightbox.",
+      "html": "<figure class=\"ds-print\"><button type=\"button\"><span></span></button><figcaption>Hallgrimskirkja</figcaption></figure>",
+      "css": ".ds-print { margin: 0; width: 180px; rotate: -1.4deg; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-print button { display: block; width: 100%; padding: 5px; border: 0; background: var(--card, #fcfcfa); box-shadow: 0 1px 0 var(--card-shade, #eceee9), var(--shadow-print, 0 1px 0 #d3d6d0, 0 2px 3px rgb(22 32 64 / 0.12), 0 12px 22px -12px rgb(22 32 64 / 0.3)); cursor: zoom-in; transition: translate 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1); } .ds-print button:hover { translate: 0 -4px; box-shadow: 0 1px 0 var(--card-shade, #eceee9), var(--shadow-card, 0 1px 0 #dcdfd9, 0 2px 0 #c3c7c0, 0 3px 3px rgb(22 32 64 / 0.1), 0 10px 22px -8px rgb(22 32 64 / 0.18), 0 36px 60px -28px rgb(22 32 64 / 0.28)); } .ds-print button:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; } .ds-print span { display: block; height: 130px; background: linear-gradient(180deg, #4a78b8, #c99a5b); } .ds-print figcaption { margin-top: 8px; font-size: 0.84rem; font-weight: 550; line-height: 1.3; color: var(--on-ground-soft, #4c5368); }"
+    },
+    {
+      "name": "Day Index Row",
+      "kind": "nav",
+      "refersTo": "index-row",
+      "description": "One day in the map card's index: day-ink number disc, name, distance in condensed caps.",
+      "html": "<nav class=\"ds-index\"><a href=\"#\"><span class=\"ds-disc\" style=\"background: oklch(0.5 0.14 50)\">1</span><span class=\"ds-name\">Arrival &amp; Blue Lagoon</span><span class=\"ds-km\">79 km</span></a><a href=\"#\"><span class=\"ds-disc\" style=\"background: oklch(0.5 0.14 150)\">2</span><span class=\"ds-name\">The Golden Circle</span><span class=\"ds-km\">212 km</span></a></nav>",
+      "css": ".ds-index { width: 340px; padding: 0 14px; background: var(--card, #fcfcfa); color: var(--ink, #1b2032); border-top: 1px solid var(--rule, #d5d9df); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-index a { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; min-height: 46px; padding: 6px 2px; border-bottom: 1px solid var(--rule, #d5d9df); color: inherit; text-decoration: none; transition: background 200ms; } .ds-index a:hover { background: var(--card-shade, #eceee9); } .ds-index a:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; } .ds-disc { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: #fff; font-size: 0.85rem; font-stretch: 112%; font-weight: 800; } .ds-name { font-weight: 600; font-size: 1rem; } .ds-km { font-stretch: 75%; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em; color: var(--ink-soft, #50576e); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Day Nav Mark",
+      "kind": "button",
+      "refersTo": "daynav-mark",
+      "description": "Fixed postmark-style disc showing the current day in its ink; opens the day index.",
+      "html": "<button class=\"ds-mark\" type=\"button\" style=\"--day: oklch(0.5 0.14 150)\"><span class=\"ds-mark-l\">Day</span><span class=\"ds-mark-f\">2</span></button>",
+      "css": ".ds-mark { display: grid; place-content: center; width: 76px; height: 76px; border: 0; border-radius: 50%; color: var(--day); background: var(--card, #fcfcfa); box-shadow: inset 0 0 0 3px var(--card, #fcfcfa), inset 0 0 0 5px currentColor, inset 0 0 0 8px var(--card, #fcfcfa), inset 0 0 0 9px currentColor, var(--shadow-print, 0 1px 0 #d3d6d0, 0 2px 3px rgb(22 32 64 / 0.12), 0 12px 22px -12px rgb(22 32 64 / 0.3)); cursor: pointer; line-height: 1; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; transition: color 400ms cubic-bezier(0.16,1,0.3,1), scale 200ms cubic-bezier(0.16,1,0.3,1); } .ds-mark:hover { scale: 1.06; } .ds-mark:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; } .ds-mark-l { font-size: 0.6rem; font-stretch: 75%; font-weight: 750; letter-spacing: 0.24em; text-transform: uppercase; padding-left: 0.24em; } .ds-mark-f { font-size: 1.75rem; font-stretch: 125%; font-weight: 900; }"
+    },
+    {
+      "name": "Lightbox Button",
+      "kind": "button",
+      "refersTo": "lightbox-button",
+      "description": "Round translucent control over the lightbox backdrop.",
+      "html": "<div class=\"ds-lb\"><button class=\"ds-lb-btn\" type=\"button\" aria-label=\"Next\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 5 7 7-7 7\"/></svg></button></div>",
+      "css": ".ds-lb { display: inline-block; padding: 24px; background: rgb(9 20 52 / 0.94); } .ds-lb-btn { display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; color: #fff; background: rgb(255 255 255 / 0.1); cursor: pointer; transition: background 200ms; } .ds-lb-btn:hover { background: rgb(255 255 255 / 0.22); } .ds-lb-btn:focus-visible { outline: 3px solid var(--focus, #e0a100); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Postcards Home",
+    "overview": "Every trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue. Each day arrives as a three-card spread: a photo front with an even white border and the place printed across it, a map card showing that day's drive, and a printed back carrying a rubber-stamp postmark, a perforated picture stamp, the message and the itinerary. All the cards lie together, overlapping, never hidden behind a flip. The rest of the day's photos spill out below as loose prints at small, varied angles.\n\nThe world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: expanded heavy caps for place names, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.\n\nThe engine runs many trips, so the system is defined by roles and rules, not by any one country. The table, the card stock, the title blue and the airmail chevrons stay fixed. Day colours, stamps, maps and place names are generated per trip.",
+    "keyCharacteristics": [
+      "Pale cool paper table with a faint fibre; every surface on it is a piece of card stock or a print.",
+      "Airmail blue is lettering and ink, not a field: the title, the chevrons, the trip postmark.",
+      "Each day is a spread of front, map card and back, overlapping at small rest angles.",
+      "One generated stamp colour per day, used for every mark belonging to that day.",
+      "Archivo only, with the width axis carrying the hierarchy (125% place names, 75% postal caps).",
+      "Square-cornered paper, circular marks.",
+      "Motion is the deal: cards settle to their rest angle and the postmark lands with an ink thunk."
+    ],
+    "rules": [
+      {
+        "name": "The One Stamp Colour Rule",
+        "body": "Each day has exactly one ink, and anything that belongs to that day (stamp, postmark, map route, pins and leader lines, number disc, itinerary numerals, route link, nav mark) uses it. No other colour marks a day, and a day's ink never appears on another day's marks; on a day's map, other days are Other Days grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The Clear Of Airmail Rule",
+        "body": "Day hues are sampled from the photos and must sit outside the airmail blue range (hues 205–300 in OKLCH, which is 215–290 plus 10° of margin), so a day's marks never read as the trip-level blue of the title, chevrons and trip postmark. They are spread as far apart as the photos allow, aiming for at least 40°. If a day's photos give no usable hue, it is nudged up to 45° from its own photo hues, then falls back to a fixed list. A trip author can override a day's colour; the rules still apply around it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed Table Rule",
+        "body": "The table, card stock, title blue and chevrons are the same on every trip. A new trip's photo palette changes the day inks, never the table or the stationery.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Hierarchy comes from width before size: 125% for place names and big figures, 112% for printed captions and number discs, 75% for postal caps and facts, 100% for prose. Don't add a second family; move along the axis.",
+        "section": "typography"
+      },
+      {
+        "name": "The Postal Caps Rule",
+        "body": "Uppercase is for lettering that would be printed or stamped (titles, place names, postmark text, labels of fact). The message and itinerary stay in sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Side By Side Rule",
+        "body": "Every card of a day's spread (front, map, back) is visible together. Nothing important sits behind a flip, a tap or a hover.",
+        "section": "layout"
+      },
+      {
+        "name": "The Paper Not Panels Rule",
+        "body": "Shadows are always navy-tinted (rgb 22 32 64 on cards and prints), light, and always describe paper lying on the table. No neutral grey UI shadows, no glow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lift On Hover Rule",
+        "body": "Hovering paper lifts it 4px and, on prints, swaps the print shadow for the card shadow. The cover's top card also turns 1° toward straight.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Paper, Round Ink Rule",
+        "body": "Never round the corners of a card or print. Roundness belongs only to things that are stamped, pressed or pinned.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** put every surface on the table as paper: card stock (card) with `--shadow-card`, or a print with `--shadow-print`.",
+      "**Do** edge every card back, and the trip map card, with the red, white and blue airmail chevron (9px).",
+      "**Do** give every day with map data its own map card: its route in `--day` over a card casing, other days in Other Days grey, pins numbered to match the stop list, end pins filled.",
+      "**Do** take each day's colour from the build's generated `--day` ink and use it for every mark belonging to that day.",
+      "**Do** keep day hues outside OKLCH 205–300 and spread them as far apart as the photos allow (aim for 40°).",
+      "**Do** set place names in Archivo at 125% width, black weight, uppercase; set postal facts in Archivo at 75% width, tracked caps, tabular numerals.",
+      "**Do** rest cards and prints at small varied angles and let the cards of a spread overlap.",
+      "**Do** keep ink marks multiplied into the paper (`mix-blend-mode: multiply`, about 0.9 opacity) with broken rubber-stamp edges.",
+      "**Do** keep every photo reachable as a front or a print, each opening the lightbox."
+    ],
+    "donts": [
+      "**Don't** use handwriting or script fonts, tape, or cream or aged paper; the card stock is near-white (card).",
+      "**Don't** flood the ground with airmail blue; the table is pale (ground) and blue stays in the title, chevrons and trip postmark.",
+      "**Don't** add a second type family; move along Archivo's width axis instead.",
+      "**Don't** round the corners of cards or prints.",
+      "**Don't** hide any card of a day's spread behind a flip, hover or tap.",
+      "**Don't** use a day's ink for another day, or a fixed brand accent where a day colour belongs.",
+      "**Don't** let a trip's photos change the table, card stock, title blue or chevrons.",
+      "**Don't** use grey or glowing shadows; shadows are light navy-tinted paper shadows.",
+      "**Don't** use Signal Amber (focus) for anything except focus."
+    ]
+  }
+}

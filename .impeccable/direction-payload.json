@@ -1,0 +1,124 @@
+{
+  "title": "Choose the visual world for Trailmark",
+  "question": "Your Iceland trip, and every trip after it. Keep the lead direction, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Postcards Home",
+      "kicker": "THE ROLL",
+      "lineage": "Picture postcards and airmail sent home from the road",
+      "thesis": "Each day of the trip arrives as a postcard: your best photo on the front, and the day's story, route and postmark on the back.",
+      "palette": ["#1d3b8f", "#f6f7f3", "#d6312b", "#2b2e3a", "#e9b23c"],
+      "materials": ["printed photo card stock", "airmail chevron border", "rubber-stamp postmarks", "perforated stamps"],
+      "viewport": "On a deep airmail-blue ground sits the bundle of 7 cards. The top card shows the trip's strongest photo (Skógafoss rainbow). Its back peeks out with a postmark reading REYKJAVÍK · 7 DAYS and the whole Ring Road route drawn as the stamp. As you scroll, one card deals off per day.",
+      "risk": "Tips into scrapbook kitsch (fake tape, handwriting fonts) if done timidly. The card borders also limit how big a photo can read on a phone.",
+      "raised": [
+        {"from": "Split-Flap Concourse", "raise": "Every card back uses the same fixed layout (postmark, stamp box, message, route), so a Taiwan trip slots in with no redesign."},
+        {"from": "Arcade Pixel Glow", "raise": "Each day gets one stamp colour, sampled from its hero photo, used everywhere for that day: map leg, nav marker, postmark ink."},
+        {"from": "Sukeban Dress Code", "raise": "Postmarks show real measured facts computed from the route (stops, km driven), never decoration."},
+        {"from": "Emigre Bitmap Specimen", "raise": "The postmark is one form repeated at every scale: huge on the bundle, small as the sticky 'where am I' marker while you scroll."},
+        {"from": "Tensegrity Column", "raise": "The island route on the top card is the index: tap a day's leg to jump to its postcard."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Contact Sheet & Selects",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Darkroom contact sheets on a light table",
+      "thesis": "Each day is a roll of film on the light table. Every frame is there; the best ones are circled in grease pencil and printed big.",
+      "palette": ["#f4f6f7", "#141414", "#e0302a", "#f2a71b"],
+      "materials": ["backlit glass", "film strips with edge numbers", "grease pencil", "glossy enlargements"],
+      "viewport": "The whole trip as one sheet: 7 film strips stacked, each day named in film-edge print. One circled frame is blown up full-bleed, and the route is scrawled in grease pencil over a small map.",
+      "risk": "The most familiar photo-centric take on a travelogue, so it's where many runs would land. It can also feel like a photographer's in-joke."
+    },
+    {
+      "id": "challenger-provenance-ribbon",
+      "label": "The Route Ribbon",
+      "verdict": "competitive",
+      "lineage": "Museum provenance ribbon, fused with your route",
+      "thesis": "One continuous ribbon (the actual route) runs the full length of the page, folding at every day and every stop.",
+      "palette": ["#e9e1cf", "#b3202a", "#8a8a85", "#2a2622"],
+      "materials": ["red silk ribbon", "ledger paper", "dated ink stamps"],
+      "viewport": "The ribbon enters at the top as the Ring Road over a faint island outline, then folds into the days with dated small caps. Photos hang off the ribbon at the stop where they were taken; rest days show as loose grey thread.",
+      "case": "Fuses cleanly: the route as one line through time and place is the clearest journey story. It loses on warmth, because it reads like a museum record rather than your holiday.",
+      "risk": "Buff paper plus serif type is a well-worn look, and it can feel archival and cold."
+    },
+    {
+      "id": "challenger-split-flap",
+      "label": "Split-Flap Concourse",
+      "verdict": "declined",
+      "lineage": "Rail departure boards",
+      "thesis": "The trip as a departures board, with each day a row that flips in as you arrive.",
+      "palette": ["#111111", "#f2f2f2", "#f0a020", "#b8bcc2"],
+      "materials": ["matte flaps", "brushed steel"],
+      "viewport": "A board listing DAY 1 to DAY 7 with destinations, cascading as you scroll.",
+      "case": "Great as an index, but the board can't hold photos, and photos are the whole point.",
+      "kept": "Fixed fields on every card back.",
+      "risk": "Becomes a header gimmick over a generic gallery."
+    },
+    {
+      "id": "challenger-arcade",
+      "label": "Arcade Pixel Glow",
+      "verdict": "declined",
+      "lineage": "CRT arcade cabinets",
+      "thesis": "The trip as a pixel overworld, one screen per day.",
+      "palette": ["#0a0a12", "#3cc0ff", "#ffd23c", "#ff4f6e"],
+      "materials": ["phosphor glow", "scanlines"],
+      "viewport": "A pixel-art island map with a car sprite on the Ring Road.",
+      "case": "Fun, but fat pixels fight real photographs and the couple's keepsake tone.",
+      "kept": "A strict colour per day, used everywhere.",
+      "risk": "Novelty wears off fast."
+    },
+    {
+      "id": "challenger-sukeban",
+      "label": "Annotated Dress Code",
+      "verdict": "declined",
+      "lineage": "Sukeban uniform code diagrams",
+      "thesis": "Photos annotated with leader-line callouts and measured rules.",
+      "palette": ["#1c2340", "#f4f4f4", "#c8333a"],
+      "materials": ["navy serge", "leader lines"],
+      "viewport": "A hero photo with callouts naming each place.",
+      "case": "Precise but clinical; friends don't recognise themselves in it.",
+      "kept": "Measured facts, not decoration.",
+      "risk": "Feels like a diagram, not a trip."
+    },
+    {
+      "id": "challenger-emigre",
+      "label": "Bitmap Specimen",
+      "verdict": "declined",
+      "lineage": "Emigre bitmap type specimens",
+      "thesis": "Place names set in coarse pixel type at poster scale.",
+      "palette": ["#f5f5f0", "#111111", "#2f5bff"],
+      "materials": ["halftone", "pixel type"],
+      "viewport": "HVERAGERÐI in giant pixels over dense columns.",
+      "case": "Type-led, while this content is photo-led.",
+      "kept": "One form repeated at every scale.",
+      "risk": "Type overpowers the photos."
+    },
+    {
+      "id": "challenger-tensegrity",
+      "label": "Tensegrity Column",
+      "verdict": "declined",
+      "lineage": "Kinetic tensegrity sculpture",
+      "thesis": "Layout follows a network of forces instead of a grid.",
+      "palette": ["#e6e4df", "#1a1a1a", "#d22f2f"],
+      "materials": ["carbon rods", "red cord"],
+      "viewport": "A floating strut diagram linking the days.",
+      "case": "No real link to a road trip.",
+      "kept": "The route network is the navigation.",
+      "risk": "Abstract and cold."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "Classic photo essay",
+    "thesis": "The standard scrolly travel story, done at full craft.",
+    "palette": ["#ffffff", "#111111", "#2b5fd9"],
+    "materials": ["full-bleed photography", "sticky scrollytelling map"],
+    "viewport": "A full-bleed hero photo with a big title, then a sticky map beside alternating photo and text sections per day.",
+    "risk": "Looks like every other travel blog by design."
+  },
+  "steer": true
+}

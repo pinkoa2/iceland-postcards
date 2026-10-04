@@ -1,23 +1,58 @@
 :root {
-  --text: #2b2b2b;
-  --text-h: #0d0d0d;
-  --bg: #ffffff;
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  /* The ground: a pale, cool table the cards are laid out on. */
+  --ground: #e4e7e2;
+  --ground-shade: #d6dad3;
+  --title: #1b3a8c;
+  --on-ground: #1b2032;
+  --on-ground-soft: #4c5368;
+  --on-ground-faint: #6e7488;
 
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font: 16px/1.5 var(--sans);
+  /* Card stock and print. */
+  --card: #fcfcfa;
+  --card-shade: #eceee9;
+  --ink: #1b2032;
+  --ink-soft: #50576e;
+  --rule: #d5d9df;
+  --sea: #e1eaf3;
+  --land: #f6f5ef;
+  --land-edge: #b7c1cf;
+  --context-route: #c3c9d4;
+
+  /* Instant film: the frame's paper, with a faint fibre. */
+  --polaroid: #f8f8f4;
+  --polaroid-paper:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(170deg, #fbfbf8, #f1f1ec);
+
+  /* Airmail. */
+  --airmail-red: #d4332b;
+  --airmail-blue: #2347b0;
+
+  --focus: #e0a100;
+  /* The first two layers are the card stock's own edge. */
+  --shadow-card:
+    0 1px 0 #dcdfd9,
+    0 2px 0 #c3c7c0,
+    0 3px 3px rgb(22 32 64 / 0.1),
+    0 10px 22px -8px rgb(22 32 64 / 0.18),
+    0 36px 60px -28px rgb(22 32 64 / 0.28);
+  --shadow-print: 0 1px 0 #d3d6d0, 0 2px 3px rgb(22 32 64 / 0.12), 0 12px 22px -12px rgb(22 32 64 / 0.3);
+
+  --font: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: clamp(16px, 4vw, 56px);
+
+  color-scheme: light;
+  font-family: var(--font);
+  font-size: 100%;
+  line-height: 1.5;
+  color: var(--on-ground);
+  background: var(--ground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #d4d4d8;
-    --text-h: #f5f5f5;
-    --bg: #121212;
-  }
+  text-rendering: optimizeLegibility;
+  scrollbar-color: var(--on-ground-faint) var(--ground-shade);
+  scroll-padding-top: 24px;
 }
 
 *,
@@ -26,18 +61,77 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
+  min-height: 100svh;
+  overflow-x: clip;
+  /* The table's surface: a faint fibre so the ground reads as a material. */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .15 0 0 0 0 .3 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--ground);
 }
 
 h1,
 h2,
-h3 {
-  color: var(--text-h);
-  font-weight: 600;
+h3,
+p,
+ol,
+ul,
+figure {
   margin: 0;
 }
 
-#app {
-  min-height: 100svh;
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--title);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
