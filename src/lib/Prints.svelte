@@ -9,8 +9,7 @@
   // visible at its natural shape and the order reading left to right, while
   // each print lands at its own angle, a little off its column, overlapping
   // its neighbours. Nothing scrolls sideways; every print opens full screen.
-  let { items, onopen, day = 1 } = $props()
-  const frameNo = (i) => `${day} · ${String(i + 1).padStart(2, '0')}`
+  let { items, onopen } = $props()
 
   let width = $state(0)
 
@@ -43,7 +42,7 @@
 
 <div class="prints" bind:clientWidth={width} style="--cols: {columns.length || 2}">
   {#if width && width < 700}
-    <PolaroidDeck {items} {onopen} {scatter} {frameNo} />
+    <PolaroidDeck {items} {onopen} />
   {:else}
     <div class="cols">
       {#each columns as col}
@@ -58,10 +57,7 @@
                     <span class="play"><Icon name="play" size={22} /></span>
                   {/if}
                 </span>
-                <span class="caption strip">
-                  {#if m.caption}<span class="caption-text">{m.caption}</span>{/if}
-                  <span class="frame">{frameNo(i)}</span>
-                </span>
+                <span class="caption">{m.caption ?? ''}</span>
               </button>
             </li>
           {/each}
@@ -182,38 +178,5 @@
       inset 0 0 0 1px rgb(0 0 0 / 0.1),
       inset 0 2px 4px rgb(0 0 0 / 0.18);
     background: linear-gradient(128deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0) 38%);
-  }
-  .strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-    .caption-text {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .frame {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: auto;
-    font-size: 0.7rem;
-    font-stretch: 75%;
-    font-weight: 750;
-    letter-spacing: 0.14em;
-    color: var(--day, var(--ink-soft));
-    font-variant-numeric: tabular-nums;
-  }
-  .frame::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.8;
   }
 </style>

@@ -1,13 +1,13 @@
 # Trailmark
 
-Scroll-down travelogues. Each trip is a bundle of postcards sent home, one per day: the photo on the front, and the route, story and postmark on the back, followed by the rest of the day's photos as loose prints.
+Scroll-down travelogues. Each trip is a bundle of postcards sent home: a pile of every photo to flick through on the cover, then one spread per day with a map of the day's drive and a written back (postmark, picture stamp, story, stops), followed by the day's photos as polaroids. Any photo or map opens in a full-screen, camera-roll style viewer.
 
 One repo holds the engine; each trip is just a folder of content.
 
 ```
 trips/
   iceland-2026/
-    trip.js        the content: title, days, stops, captions
+    trip.js        the content: title, heading, days, stops, captions
     media/day-N/   photos and videos (already compressed)
     routes.json    cached road routes (generated, commit it)
 ```
@@ -25,7 +25,8 @@ TRIP=iceland-2026 npm run build  # → dist/iceland-2026/
 
 - resizes every photo into responsive WebP sizes (480/960/1600) with blurred placeholders
 - fetches each day's real road route once from the public OSRM server and caches it in `trips/<id>/routes.json`, so builds never hit the network again
-- draws the overview map and each day's stamp map from Natural Earth coastlines
+- draws the trip map and each day's map from Natural Earth coastlines
+- builds a Google Maps link for each day's route and for every single stop
 - samples each day's stamp colour from its photos (override with `stamp: { hue }` in `trip.js`)
 - writes the link-preview image (`og.jpg`) and fills the page title and description
 
@@ -39,9 +40,10 @@ Then drop photos into `trips/taiwan-2027/media/day-N/`, fill in `trip.js`, and r
 
 - **Photos:** compress before adding: `magick in.jpg -auto-orient -resize '2000x2000>' -strip -quality 85 out.jpg`. `-strip` also removes GPS data.
 - **Videos:** need a poster frame: `ffmpeg -ss 1 -i clip.mp4 -frames:v 1 clip-poster.jpg`.
-- **Stops:** `{ name, lat, lng }` in driving order. In Google Maps, right-click a place to copy its coordinates. Leave `stops` out on days without a drive.
+- **Stops:** `{ name, lat, lng }` in driving order. In Google Maps, right-click a place to copy its coordinates. On a day without a drive, give a single `place: { name, lat, lng }` instead.
+- **Heading:** `heading: 'Taiwan Roadtrip'` is the page title; its first word is lettered large and the rest sits with the `year` underneath.
 - **Units:** `units: 'mi'` or `'km'` in `trip.js` sets how distances read.
-- **Main photo:** mark one photo per day with `cover: true` to put it on the day's picture stamp. The trip's `cover` is the top postcard and the link preview.
+- **Main photo:** mark one photo per day with `cover: true` to put it on the day's picture stamp. The trip's `cover` is the top of the cover pile and the link preview.
 
 ## Deploying
 

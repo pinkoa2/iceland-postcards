@@ -2,45 +2,55 @@
   import Photo from './Photo.svelte'
   import Icon from './Icon.svelte'
 
-  // Phones: the day's polaroids as one pile. The top one is fully visible, the
-  // next ones peek out behind at their own angles, and a swipe (or the arrows)
-  // flicks through them. A tap opens the photo full screen.
-  let { items, onopen, scatter, frameNo } = $props()
+  // A pile of photos you flick through: swipe (or drag) the top one away to
+  // bring up the next, swipe the other way to bring the last one back. A tap
+  // opens the photo full screen. Two looks: `polaroid` (instant film with a
+  // caption strip, the day piles) and `print` (an even white border, the
+  // cover). Every card has its own resting angle, place in the pile, pivot
+  // and throw, so no two flicks look alike.
+  let { items, onopen, variant = 'polaroid', ratio = 1.06, maxW = 330 } = $props()
 
   let width = $state(0)
   let index = $state(0)
   let dx = $state(0)
   let dragging = $state(false)
   let leaving = $state(null) // 'left' | 'right' while the top card flies off
-  let entering = $state(null) // index of the previous card sliding back on top
+  let entering = $state(null) // the card sliding back on top
 
-  const n = items.length
-  // Every polaroid in the pile is the same format, like real instant film:
-  // a near-square photo window that the photo fills. The full, uncropped
-  // photo is a tap away.
-  const PAD = 8
-  const STRIP = 42
-  const cardW = $derived(Math.round(Math.min(width - 60, 330)))
-  const photoH = $derived(Math.round((cardW - PAD * 2) * 1.06))
-  const H = $derived(photoH + PAD + STRIP + 48)
-  const size = () => ({ w: cardW, photoH })
+  const n = $derived(items.length)
+  const print = $derived(variant === 'print')
+  const PAD = $derived(print ? 10 : 8)
+  const STRIP = $derived(print ? PAD : 42)
+  const cardW = $derived(Math.round(Math.min(width - 56, maxW)))
+  const photoH = $derived(Math.round((cardW - PAD * 2) * ratio))
+  const H = $derived(photoH + PAD + STRIP + 56)
 
-  // Each polaroid's place in the pile: 0 is on top, 1 and 2 peek out behind,
-  // the rest wait unseen at the bottom.
+  // Stable pseudo-random numbers per photo.
+  function rand(src, salt) {
+    let h = 2166136261 ^ salt
+    for (let k = 0; k < src.length; k++) h = Math.imul(h ^ src.charCodeAt(k), 16777619)
+    return ((h >>> 0) % 10000) / 10000
+  }
+  // Each card's own character, fixed for that photo.
+  function character(src) {
+    const r = (s) => rand(src, s)
+    const side = r(9) < 0.5 ? -1 : 1
+    return {
+      rest: (r(1) * 2 - 1) * 3.2, // angle when on top
+      under: { r: side * (3.5 + r(2) * 9), x: side * (8 + r(3) * 26), y: -10 + r(4) * 34 },
+      pivot: `${25 + r(5) * 50}% ${55 + r(6) * 40}%`,
+      tilt: 0.025 + r(7) * 0.04, // degrees per pixel dragged
+      out: { r: 9 + r(8) * 20, y: -70 + r(10) * 150, t: 220 + Math.round(r(11) * 140) },
+    }
+  }
+
+  // Each card's place in the pile: 0 on top, 1–3 peek out, the rest wait.
   const slot = (j) => (j - index + n) % n
-
-  // Where each place in the pile sits: the polaroids behind fan out to
-  // alternate sides at clearly different angles, each with its own jitter.
-  const SLOTS = [
-    { r: 0, x: 0, y: 0 },
-    { r: 8.5, x: 24, y: -4 },
-    { r: -9.5, x: -26, y: 12 },
-    { r: 4, x: 12, y: 22 },
-  ]
-  function place(k, sc) {
-    const p = SLOTS[Math.min(k, 3)]
-    if (k === 0) return { r: sc.r * 0.5, x: 0, y: 0 }
-    return { r: p.r + sc.r * 0.6, x: p.x + sc.x * 0.8, y: p.y }
+  function place(k, c) {
+    if (k === 0) return { r: c.rest, x: 0, y: 0 }
+    // Deeper cards spread a little further.
+    const f = 0.75 + Math.min(k, 3) * 0.18
+    return { r: c.under.r * f, x: c.under.x * f, y: c.under.y + k * 3 }
   }
   const reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -48,18 +58,19 @@
     if (leaving || n < 2) return
     if (step > 0) {
       if (reduced) return (index = (index + 1) % n)
+      const c = character(items[index].m.src)
       leaving = dx > 0 ? 'right' : 'left'
       setTimeout(() => {
         index = (index + 1) % n
         leaving = null
         dx = 0
-      }, 260)
+      }, c.out.t)
     } else {
       index = (index - 1 + n) % n
       dx = 0
       if (!reduced) {
         entering = index
-        setTimeout(() => (entering = null), 340)
+        setTimeout(() => (entering = null), 380)
       }
     }
   }
@@ -75,13 +86,16 @@
     moved = false
     axis = null
     dragging = true
-    e.currentTarget.setPointerCapture?.(e.pointerId)
   }
   function move(e) {
     if (!dragging) return
     const mx = e.clientX - startX
     const my = e.clientY - startY
-    if (!axis && Math.hypot(mx, my) > 8) axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y'
+    if (!axis && Math.hypot(mx, my) > 8) {
+      axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y'
+      // Only a sideways drag takes the pointer, so a plain tap still opens.
+      if (axis === 'x') e.currentTarget.setPointerCapture?.(e.pointerId)
+    }
     if (axis === 'x') {
       moved = true
       dx = mx
@@ -98,18 +112,16 @@
   }
 </script>
 
-<div class="deck" bind:clientWidth={width}>
+<div class="deck" class:print bind:clientWidth={width}>
   {#if width}
-    <div class="pile" style="height: {H}px" role="group" aria-roledescription="carousel" aria-label="{n} photos and videos">
-      <!-- Every polaroid is a lasting card in a fixed order; a swipe only
+    <div class="pile" style="height: {H}px" role="group" aria-roledescription="carousel" aria-label="{n} photos">
+      <!-- Every card is a lasting element in a fixed order; a swipe only
            changes each card's place, so they glide rather than redraw. -->
       {#each items as it, j (it.m.src)}
         {@const k = slot(j)}
-        {@const s = size()}
-        {@const sc = scatter(it.m.src)}
+        {@const c = character(it.m.src)}
         {@const top = k === 0}
-        {@const shown = Math.min(k, 4)}
-        {@const pl = place(k, sc)}
+        {@const pl = place(k, c)}
         <div
           class="card"
           class:top
@@ -118,7 +130,7 @@
           class:leave-left={top && leaving === 'left'}
           class:leave-right={top && leaving === 'right'}
           class:enter={entering === j}
-          style="width: {s.w}px; --r: {pl.r}deg; --dx: {top ? dx : pl.x}px; --dxn: {top ? dx : 0}; --lift: {pl.y}px; --shrink: {1 - shown * 0.015}; z-index: {top && entering === null ? 30 : 20 - k}"
+          style="width: {cardW}px; transform-origin: {c.pivot}; --r: {pl.r}deg; --dx: {top ? dx : pl.x}px; --dxn: {top ? dx : 0}; --tilt: {c.tilt}deg; --lift: {pl.y}px; --shrink: {1 - Math.min(k, 4) * 0.015}; --out-r: {c.out.r}deg; --out-y: {c.out.y}px; --out-t: {c.out.t}ms; z-index: {top && entering === null ? 30 : 20 - k}"
           onpointerdown={top ? down : undefined}
           onpointermove={top ? move : undefined}
           onpointerup={top ? up : undefined}
@@ -127,31 +139,33 @@
         >
           <button
             type="button"
-            class="film"
+            class:film={!print}
+            class:paper={print}
             tabindex={top ? 0 : -1}
             onclick={() => tap(it.i)}
             onkeydown={(e) => {
               if (e.key === 'ArrowRight') go(1)
               else if (e.key === 'ArrowLeft') go(-1)
-            }} aria-label="Open {it.m.kind === 'video' ? 'video' : 'photo'}{it.m.caption ? `: ${it.m.caption}` : ''}">
-            <span class="shot" style="height: {s.photoH}px">
-              <Photo media={it.m} sizes="{s.w}px" eager={k < 4} />
+            }}
+            aria-label="Open {it.m.kind === 'video' ? 'video' : 'photo'}{it.m.caption ? `: ${it.m.caption}` : ''}"
+          >
+            <span class="shot" style="height: {photoH}px">
+              <Photo media={it.m} sizes="{cardW}px" eager={k < 4} />
               {#if it.m.kind === 'video'}<span class="play"><Icon name="play" size={22} /></span>{/if}
             </span>
-            <span class="caption strip">
-              {#if it.m.caption}<span class="caption-text">{it.m.caption}</span>{/if}
-              <span class="frame">{frameNo(it.i)}</span>
-            </span>
+            {#if !print}
+              <span class="caption">{it.m.caption ?? ''}</span>
+            {/if}
           </button>
         </div>
       {/each}
     </div>
 
     {#if n > 1}
-      <div class="controls">
-        <span class="count" aria-live="polite">{index + 1} / {n}</span>
-        <span class="hint">Try swiping left and right</span>
-      </div>
+      <p class="hint">
+        <span class="touch">Try swiping left and right</span>
+        <span class="mouse">Drag the photo aside to flip through</span>
+      </p>
     {/if}
   {/if}
 </div>
@@ -165,14 +179,14 @@
   .card {
     position: absolute;
     left: 50%;
-    top: 8px;
+    top: 22px;
     translate: calc(-50% + var(--dx)) var(--lift);
-    rotate: calc(var(--r) + var(--dxn) * 0.04deg);
+    rotate: calc(var(--r) + var(--dxn) * var(--tilt));
     scale: var(--shrink);
     transition:
-      translate 420ms var(--ease-out),
-      rotate 420ms var(--ease-out),
-      scale 420ms var(--ease-out),
+      translate 460ms var(--ease-out),
+      rotate 460ms var(--ease-out),
+      scale 460ms var(--ease-out),
       opacity 300ms var(--ease-out);
   }
   /* Going to the bottom of the pile is instant (it has already flown off);
@@ -185,24 +199,25 @@
   .card.dragging {
     transition: none;
   }
+  /* Each card leaves at its own angle, height and speed. */
   .card.leave-left {
-    translate: calc(-50% - 130vw) 0;
-    rotate: -18deg;
-    transition-duration: 260ms;
+    translate: calc(-50% - 130vw) var(--out-y);
+    rotate: calc(var(--out-r) * -1);
+    transition-duration: var(--out-t);
   }
   .card.leave-right {
-    translate: calc(-50% + 130vw) 0;
-    rotate: 18deg;
-    transition-duration: 260ms;
+    translate: calc(-50% + 130vw) var(--out-y);
+    rotate: var(--out-r);
+    transition-duration: var(--out-t);
   }
   .card.enter {
     z-index: 40 !important;
-    animation: enter 340ms var(--ease-out);
+    animation: enter 380ms var(--ease-out);
   }
   @keyframes enter {
     from {
-      translate: calc(-50% - 110vw) 0;
-      rotate: -14deg;
+      translate: calc(-50% - 110vw) var(--out-y);
+      rotate: calc(var(--out-r) * -1);
     }
   }
   button {
@@ -229,13 +244,15 @@
     pointer-events: none;
   }
   .caption {
-    display: flex;
-    align-items: center;
+    display: block;
     min-height: 42px;
-    padding: 4px 2px 6px;
+    padding: 12px 2px 8px;
+    overflow: hidden;
     font-size: 0.86rem;
     font-weight: 600;
     line-height: 1.25;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: var(--ink-soft);
   }
   .play {
@@ -261,7 +278,7 @@
     outline-offset: -1px;
   }
   /* The photo sits slightly recessed in the frame, under a faint gloss. */
-  .shot::after {
+  .film .shot::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -271,57 +288,27 @@
       inset 0 2px 4px rgb(0 0 0 / 0.18);
     background: linear-gradient(128deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0) 38%);
   }
-  .strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-    .caption-text {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .frame {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: auto;
-    font-size: 0.7rem;
-    font-stretch: 75%;
-    font-weight: 750;
-    letter-spacing: 0.14em;
-    color: var(--day, var(--ink-soft));
-    font-variant-numeric: tabular-nums;
-  }
-  .frame::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.8;
-  }
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 12px;
-    margin-top: 12px;
+  /* ---------- printed photo ---------- */
+  .paper {
+    padding: 10px;
+    background: var(--card);
   }
   .hint {
+    margin-top: 6px;
+    text-align: center;
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--on-ground-faint);
   }
-  .count {
-    font-stretch: 75%;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.12em;
-    color: var(--on-ground-soft);
-    font-variant-numeric: tabular-nums;
+  .mouse {
+    display: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .touch {
+      display: none;
+    }
+    .mouse {
+      display: inline;
+    }
   }
 </style>

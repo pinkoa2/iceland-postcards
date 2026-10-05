@@ -320,6 +320,10 @@ for (const [i, day] of trip.days.entries()) {
     description: day.description ?? '',
     place: place?.name ?? stops.at(-1)?.name ?? null,
     stops: stops.map((s) => s.name),
+    // Each stop (or the day's single place) opens on its own in Google Maps.
+    stopLinks: (stops.length ? stops : place?.lat != null ? [place] : []).map(
+      (s) => `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`,
+    ),
     // Distance in the trip's units (routes are cached in km).
     dist: r?.km != null ? toUnit(r.km) : null,
     colour: null,

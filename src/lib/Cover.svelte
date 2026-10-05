@@ -1,47 +1,49 @@
 <script>
-  import Photo from './Photo.svelte'
+  import PolaroidDeck from './PolaroidDeck.svelte'
   import Postmark from './Postmark.svelte'
   import OverviewMap from './OverviewMap.svelte'
   import Icon from './Icon.svelte'
 
-  // The bundle as it arrives: the trip's name printed on the envelope, the top
-  // postcard over the edges of the others, and the map card that indexes them.
-  let { trip, onopen } = $props()
+  // The bundle as it arrives: the trip's name lettered on the envelope, a pile
+  // of printed photos (every photo of the trip, the cover on top) to flick
+  // through, and the map card that indexes the days.
+  // `photos` is the whole trip in order, as { m, i } for the viewer.
+  let { trip, photos, onopen } = $props()
 
   const fmt = new Intl.NumberFormat('en')
   const t = trip.totals
-  // Three other days' fronts peek out from under the top card.
-  const under = trip.days
-    .map((d) => d.media[d.coverIndex])
-    .filter((m) => m && m.src !== trip.cover.src)
-    .slice(0, 3)
-  const byline = [trip.travellers.join(' & '), trip.year].filter(Boolean).join(' · ')
+  // The heading's first word is lettered large; the rest rides with the year.
+  const [place, ...kindWords] = trip.heading.split(' ')
+  const kind = kindWords.join(' ')
+  const ringTop = [trip.title, trip.year].filter(Boolean).join(' · ')
 </script>
 
 <header class="cover">
-  <h1 class="title">{trip.heading}</h1>
+  <h1 class="title">
+    <span class="place">{place}</span>
+    {#if kind || trip.year}
+      <span class="kind">
+        <span class="chevron" aria-hidden="true"></span>
+        {#if kind}<span>{kind}</span>{/if}
+        {#if kind && trip.year}<span class="sep" aria-hidden="true">·</span>{/if}
+        {#if trip.year}<span class="year">{trip.year}</span>{/if}
+      </span>
+    {/if}
+  </h1>
 
   <div class="bundle">
     <div class="sub">
-      {#if byline}<p class="byline">{byline}</p>{/if}
       {#if trip.summary}<p class="summary">{trip.summary}</p>{/if}
     </div>
 
     <div class="stack">
-      {#each under as m, i}
-        <div class="card under u{i}" aria-hidden="true">
-          <Photo media={m} sizes="480px" />
-        </div>
-      {/each}
-      <button class="card top" type="button" onclick={onopen} aria-label="Open the cover photo">
-        <Photo media={trip.cover} sizes="(min-width: 960px) 46vw, 88vw" eager />
-      </button>
+      <PolaroidDeck items={photos} {onopen} variant="print" ratio={1.32} maxW={500} />
     </div>
 
     <nav class="card mapcard" aria-label="Days of the trip">
       <Postmark
         class="mapmark"
-        top={byline}
+        top={ringTop}
         bottom="{fmt.format(t.dist)} {trip.unit} · {t.stops} stops"
         label="DAYS"
         figure={String(t.days)}
@@ -73,14 +75,49 @@
   }
 
   .title {
+    display: grid;
+    gap: 10px;
     color: var(--title);
-    font-size: clamp(2.3rem, 10vw, 4rem);
-    font-stretch: 104%;
-    font-weight: 620;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
   }
+  .place {
+    font-size: clamp(3rem, 15vw, 5rem);
+    font-stretch: 118%;
+    font-weight: 760;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+  }
+  /* The kind of trip and its year, stamped in red beside a strip of airmail. */
+  .kind {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(0.85rem, 3.4vw, 1.05rem);
+    font-stretch: 78%;
+    font-weight: 720;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--airmail-red);
+  }
+  .chevron {
+    flex: none;
+    width: 46px;
+    height: 9px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--airmail-red) 0 6px,
+      transparent 6px 10px,
+      var(--airmail-blue) 10px 16px,
+      transparent 16px 20px
+    );
+  }
+  .sep {
+    letter-spacing: 0;
+    opacity: 0.6;
+  }
+  .year {
+    color: var(--title);
+  }
+
 
   .sub {
     grid-area: sub;
@@ -88,14 +125,6 @@
     gap: 10px;
     max-width: 38rem;
     margin-bottom: 34px;
-  }
-  .byline {
-    font-stretch: 75%;
-    font-weight: 650;
-    font-size: 0.9rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--on-ground-soft);
   }
   .summary {
     font-size: clamp(1.05rem, 1.6vw, 1.3rem);
@@ -121,48 +150,6 @@
     justify-self: center;
     width: min(100%, 520px);
   }
-  .top {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 10px 10px 40px;
-    border: 0;
-    cursor: zoom-in;
-    rotate: -2.5deg;
-    transition: rotate 500ms var(--ease-out), translate 500ms var(--ease-out);
-  }
-  .top:hover {
-    rotate: -1.5deg;
-    translate: 0 -4px;
-  }
-  .top :global(img) {
-    width: 100%;
-    max-height: 72svh;
-    object-fit: cover;
-  }
-  .under {
-    position: absolute;
-    inset: 0 0 0 0;
-    padding: 8px;
-    overflow: hidden;
-  }
-  .under :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .u0 {
-    rotate: 5deg;
-    translate: 4% 1%;
-  }
-  .u1 {
-    rotate: -7deg;
-    translate: -5% 2%;
-  }
-  .u2 {
-    rotate: 2deg;
-    translate: 1% -3%;
-  }
 
   .mapcard {
     grid-area: map;
@@ -170,7 +157,7 @@
     z-index: 1;
     width: min(100%, 560px);
     justify-self: center;
-    margin-top: -28px;
+    margin-top: 18px;
     padding: 18px 18px 14px;
     color: var(--ink);
     rotate: 1.4deg;
@@ -262,8 +249,15 @@
   }
 
   @media (min-width: 960px) {
-    .title {
-      font-size: clamp(3.6rem, 5.4vw, 5.6rem);
+    .place {
+      font-size: clamp(4.4rem, 7.4vw, 7.2rem);
+    }
+    .kind {
+      font-size: 1.2rem;
+    }
+    .chevron {
+      width: 64px;
+      height: 11px;
     }
     .bundle {
       grid-template-columns: 1.1fr 1fr;
@@ -279,9 +273,6 @@
     .stack {
       justify-self: end;
       width: min(100%, 560px);
-    }
-    .top :global(img) {
-      max-height: 76vh;
     }
     .mapcard {
       justify-self: start;

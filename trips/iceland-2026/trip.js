@@ -152,7 +152,10 @@ export default {
       title: 'Heading Home',
       description:
         'Headed back to Keflavík Airport for our flight home, wrapping up an unforgettable trip.',
-      place: { name: 'Keflavík Airport', lat: 63.9814869, lng: -22.6281862 },
+      stops: [
+        { name: 'Reykjavík', lat: 64.1466, lng: -21.9426 },
+        { name: 'Keflavík Airport', lat: 63.9814869, lng: -22.6281862 },
+      ],
     },
   ],
 }

@@ -1,6 +1,6 @@
 ---
 name: Trailmark
-description: Each trip told home as postcard spreads (photo front, day map, written back) laid out on a pale paper table.
+description: Each trip told home as postcard spreads (a day map and a written back with a picture stamp) and piles of photos, laid out on a pale paper table.
 colors:
   title: "#1b3a8c"
   airmail-red: "#d4332b"
@@ -23,11 +23,11 @@ colors:
 typography:
   display:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(2.3rem, 10vw, 4rem)"
-    fontWeight: 620
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-    fontVariation: "'wdth' 104"
+    fontSize: "clamp(3rem, 15vw, 5rem)"
+    fontWeight: 760
+    lineHeight: 0.9
+    letterSpacing: "-0.035em"
+    fontVariation: "'wdth' 118"
   headline:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
     fontSize: "clamp(1.7rem, 3.4vw, 2.6rem)"
@@ -35,12 +35,6 @@ typography:
     lineHeight: 0.98
     letterSpacing: "-0.02em"
     fontVariation: "'wdth' 125"
-  printed:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(0.8rem, 1.6vw, 1rem)"
-    fontWeight: 800
-    letterSpacing: "0.08em"
-    fontVariation: "'wdth' 112"
   lead:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
     fontSize: "clamp(1.05rem, 1.6vw, 1.3rem)"
@@ -77,14 +71,6 @@ spacing:
   day-gap: "clamp(72px, 11vw, 150px)"
   index-row: "46px"
 components:
-  postcard-front:
-    backgroundColor: "{colors.card}"
-    rounded: "{rounded.none}"
-    padding: "9px"
-  postcard-front-wide:
-    backgroundColor: "{colors.card}"
-    rounded: "{rounded.none}"
-    padding: "13px"
   postcard-back:
     backgroundColor: "{colors.card}"
     textColor: "{colors.ink}"
@@ -130,20 +116,20 @@ components:
 
 **Creative North Star: "Postcards Home"**
 
-Every trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue. Each day arrives as a three-card spread: a photo front with an even white border and the place printed across it, a map card showing that day's drive, and a printed back carrying a rubber-stamp postmark, a perforated picture stamp, the message and the itinerary. All the cards lie together, overlapping, never hidden behind a flip. All of the day's photos (the front one included) follow as polaroids: on phones, one swipeable pile; on wider screens, tipped out onto the table: masonry columns, each photo at its natural shape, each polaroid at its own small angle, overlapping its neighbours. A winding road at the right edge fills day by day in each day's ink as you scroll, with a red map pin marking where you are.
+Every trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue, with the kind of trip and its year stamped in red beside a strip of airmail. Under it lies a pile of printed photos, every photo of the trip with the cover on top, to flick through. Each day arrives as a two-card spread: a map card showing that day's drive, and a written back carrying a rubber-stamp postmark, a large perforated picture stamp of the day's main photo, the message and the itinerary. The cards lie together, never hidden behind a flip. All of the day's photos follow as polaroids: on phones, one swipeable pile; on wider screens, tipped out onto the table in masonry columns, each photo at its natural shape and its own small angle. A winding road at the right edge fills day by day in each day's ink as you scroll, with a red map pin marking where you are. Tapping any photo or map opens it on a plain dark ground, like a camera roll.
 
-The world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: expanded heavy caps for place names, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.
+The world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: wide, heavy lettering for the trip name and day titles, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.
 
 The engine runs many trips, so the system is defined by roles and rules, not by any one country. The table, the card stock, the title blue and the airmail chevrons stay fixed. Day colours, stamps, maps and place names are generated per trip.
 
 **Key Characteristics:**
 - Pale cool paper table with a faint fibre; every surface on it is a piece of card stock or a print.
 - Airmail blue is lettering and ink, not a field: the title, the chevrons, the trip postmark.
-- Each day is a spread of front, map card and back, overlapping at small rest angles.
+- Each day is a spread of map card and written back at small rest angles, then its photos.
 - One generated stamp colour per day, used for every mark belonging to that day.
-- Archivo only, with the width axis carrying the hierarchy (125% place names, 75% postal caps).
+- Archivo only, with the width axis carrying the hierarchy (118–125% names and titles, 75% postal caps).
 - Square-cornered paper, circular marks.
-- Motion is the deal: cards settle to their rest angle and the postmark lands with an ink thunk.
+- Motion is the deal and the flick: cards settle to their rest angle, the postmark lands with an ink thunk, and photos are flicked off a pile one by one, each in its own way.
 
 ## Colors
 
@@ -163,8 +149,8 @@ A fixed airmail palette (pale table, near-white card, blue lettering, red and bl
 - **Paper Table** (ground): the field the whole page lies on, under a faint navy-tinted fractal-noise fibre (6% alpha) so it reads as a material, not a flat fill. Cool and slightly green-grey.
 - **Table Shade** (ground-shade): the scrollbar track.
 - **Table Ink** (on-ground): the summary and body text lying directly on the table. Same value as Print Ink.
-- **Soft Table Ink** (on-ground-soft): bylines, print captions and quiet links on the table.
-- **Faint Table Ink** (on-ground-faint): the scrollbar thumb and counters on the table.
+- **Soft Table Ink** (on-ground-soft): polaroid captions and quiet links on the table.
+- **Faint Table Ink** (on-ground-faint): the scrollbar thumb and quiet hints on the table ("Try swiping left and right").
 - **Card Stock** (card): every postcard, map card, print and dropdown; also the casing under map routes and the fill of open pins. Near-white, never cream.
 - **Card Shade** (card-shade): the hover fill on index rows and the paper edge under prints.
 - **Print Ink** (ink): all text on card stock.
@@ -190,47 +176,40 @@ A fixed airmail palette (pale table, near-white card, blue lettering, red and bl
 **Character:** One grotesque family set like postal print. Expanded black caps for anything that names a place, condensed tracked caps for anything a post office would stamp, and plain regular-width text for the message.
 
 ### Hierarchy
-- **Display** (620, 104% width, sentence case, line-height 1, −0.03em, Airmail Title): the trip heading (`heading` in trip.js, e.g. "Iceland Roadtrip") at the top of the cover. Calm, not shouting: no capitals, no heavy weight (desktop from 960px: `clamp(3.6rem, 5.4vw, 5.6rem)`).
+- **Display** (760, 118% width, sentence case, line-height 0.9, −0.035em, Airmail Title): the first word of the trip heading (`heading` in trip.js, "Iceland") on the cover, `clamp(3rem, 15vw, 5rem)` on phones and `clamp(4.4rem, 7.4vw, 7.2rem)` from 960px. The rest of the heading and the year ride beneath it as a Label line: a 46px (64px wide) strip of airmail chevrons, then "ROADTRIP · 2026" in 78% width, 720 weight, 0.3em tracked caps, the kind in Airmail Red and the year in Airmail Title.
 - **Headline** (850, 125% width, uppercase, balanced wrap): the day title on each card back.
-- **Printed** (800, 112% width, uppercase, 0.08em tracking, white with a soft dark text-shadow): the place name printed across the bottom of a photo front, on one line with an ellipsis.
-- **Lead** (400): the trip summary under the byline on the table, `text-wrap: pretty`, max 38rem.
+- **Lead** (400): the trip summary on the table, `text-wrap: pretty`, max 38rem.
 - **Body** (400, line-height 1.6, max 60ch): the message on a card back.
 - **Title** (600): day names in the trip index and the nav dropdown. Itinerary stops use 0.98rem at 560.
-- **Label** (650–750, 75% width, uppercase, tracked 0.06–0.3em): bylines, distances, map captions (distance and stops), postmark rings, the stamp's trip line, the nav mark's DAY label, lightbox counters. Numerals are tabular.
+- **Label** (650–750, 75% width, uppercase, tracked 0.06–0.3em): the trip line under the heading, distances, map captions (distance and stops), postmark rings, the stamp's trip line, the nav mark's DAY label. Numerals are tabular.
 - **Caption** (550): print captions on the table, in Soft Table Ink.
 - **Number discs and pins** (800, 112% width on discs, 100% on map pins): day numbers in the index, nav list and trip map markers (white on Day Ink); stop numbers on day map pins (Day Ink on card, white on filled end pins).
 
 ### Named Rules
-**The Width Axis Rule.** Hierarchy comes from width before size: 125% for place names and big figures, 112% for printed captions and number discs, 75% for postal caps and facts, 100% for prose. Don't add a second family; move along the axis.
+**The Width Axis Rule.** Hierarchy comes from width before size: 118–125% for the trip name, day titles and big figures, 112% for number discs, 75% for postal caps and facts, 100% for prose. Don't add a second family; move along the axis.
 
-**The Postal Caps Rule.** Uppercase is for lettering that would be printed or stamped (titles, place names, postmark text, labels of fact). The message and itinerary stay in sentence case.
+**The Postal Caps Rule.** Uppercase is for lettering that would be printed or stamped (day titles, postmark text, labels of fact, the trip line). The trip name, the message and the itinerary stay in sentence case.
 
 ## Layout
 
 Single scrolling column of days on the table, gutters of `clamp(16px, 4vw, 56px)`. The cover is capped at 1520px wide, days at 1320px. Days are separated by `clamp(72px, 11vw, 150px)` of open table, and each day's spread has `clamp(40px, 5vw, 72px)` below it before its prints.
 
-**Phone (below 960px):** day sections take 26px on the left and 46px on the right (a lane for the trip road), and each day's cards stack in order: the front (up to 640px), the map card laid over the front's bottom edge (6px, 4px narrower), then the back 26px below (10px narrower, up to 620px), then the polaroid pile. On the cover: title, then byline and summary, then the photo stack, then the trip map card tucked 28px under the stack.
+**Phone (below 960px):** day sections take 26px on the left and 46px on the right (a lane for the trip road). Each day stacks: the written back (up to 620px) first, so the day opens on its title, stamp and story; the map card 22px below; then the polaroid pile. On the cover: the trip name and trip line, the summary, the pile of printed photos, then the trip map card 18px below.
 
-**Wide (960px and up):** each day picks one of four spreads from its front photo.
-- **left / right** (portrait front): the front spans two rows on one side (1.05fr against 1fr); the map card sits beside it, dropped by a per-day offset (3–14vh) and pulled 6% over the front; the back lies 22px below the map, inset 3%. The map and back go on the side the photo's subject isn't on; a centred subject takes the other side from the day before.
-- **stacked** (landscape front, wider than 1.15:1): the front across the top at up to `min(900px, 78%)`; the map card and back in two columns below, the map pulled 10% up over the front's lower edge and the back dropped 6%.
-- **solo** (no photo): the map card and back side by side, the back dropped 8vh and overlapping by 3%.
-
-Where the map overlaps the front's left edge (right, stacked), the printed place name aligns right. On the cover, the stack takes the left column (1.1fr) and the byline and trip map card share the right, the map card overlapping the stack by 12%.
+**Wide (960px and up):** each day lays its map card and written back side by side in two equal columns, alternating sides from day to day (`left`: back left, map right; `right`: mirrored). The map is dropped by a per-day offset (2–11vh) and pulled 4% toward the back. On the cover, the photo pile takes the left column (1.1fr) and the summary and trip map card share the right.
 
 **Polaroids:** a swipeable pile under 700px; scattered masonry columns (three) from 700px. Nothing scrolls sideways.
 
-**The Side By Side Rule.** Every card of a day's spread (front, map, back) is visible together. Nothing important sits behind a flip, a tap or a hover.
+**The Side By Side Rule.** Every card of a day's spread (map and back) is visible together. Nothing important sits behind a flip, a tap or a hover.
 
 ## Elevation & Depth
 
 Depth is physical paper, not UI elevation. Every card shows its own edge (two 1px solid steps in pale grey) and then casts a light, layered navy-tinted shadow onto the table. Cards rest at small angles (±1–9°) so the overlaps read as a spread of real cards; within a spread the back sits above the map, the map above the front. Ink marks (postmarks) sit on the paper with `mix-blend-mode: multiply` at about 0.9 opacity, not above it.
 
 ### Shadow Vocabulary
-- **Card stock** (`--shadow-card`): postcard fronts and backs, map cards, the cover stack, the nav dropdown, lightbox media, and prints on hover. The card's two-step edge plus three soft navy-tinted shadows (10–28% alpha) of increasing spread.
+- **Card stock** (`--shadow-card`): card backs, map cards, the top photo of every pile, the nav dropdown, and polaroids on hover. The card's two-step edge plus three soft navy-tinted shadows (10–28% alpha) of increasing spread.
 - **Print** (`--shadow-print`): prints at rest (under a 1px Card Shade edge) and the day nav mark. A 1px edge and a shorter, thinner drop.
 - **Stamp**: two small navy drop-shadows on the perforated stamp, so the perforations cast.
-- **Printed caption**: a soft dark text-shadow under white lettering on photos, for legibility only.
 
 ### Named Rules
 **The Paper Not Panels Rule.** Shadows are always navy-tinted (rgb 22 32 64 on cards and prints), light, and always describe paper lying on the table. No neutral grey UI shadows, no glow.
@@ -245,44 +224,43 @@ Paper is rectangular with square corners (0). Circles are for marks: postmarks, 
 
 ## Components
 
-### Postcard Front
-A picture postcard. Card stock with an even border (9px, 13px from 960px), photo cropped to cover (max 74svh, 78vh wide), the place name in Printed type at the bottom (right-aligned where the map overlaps its left edge). Opens the lightbox (`cursor: zoom-in`). Rests at a per-day angle.
-
 ### Day Map Card
-The day's drive on its own card, present on every day with map data. Card stock, 10px border on three sides, the map framed by a 1px Hairline. Sea fills the frame; land in Land with a 1.2px Coast edge; the trip's other routes in Other Days grey (3px); this day's route in Day Ink (5.5px) over a 12px card-coloured casing. Numbered pins match the stop list on the back: open pins are card-filled with a 3px Day Ink ring and Day Ink numerals (r 14); the start and end pins are filled Day Ink with a card ring and white numerals (r 17). When pins are nudged apart, a 1.5px Day Ink leader runs from a small Day Ink anchor dot at the true location. A day without a route shows a single filled pin with a white centre. The whole map is a link to the day's route in Google Maps: on hover or focus the card lifts 4px and a Day Ink tag, "Open in Google Maps" with an outward arrow, appears top right. The caption row below (min 46px) holds the distance (in the trip's `units`, miles for Iceland) and stop count in condensed caps (Faded Ink) and "Open in Google Maps" with an outward arrow in Day Ink, underlined at 40% until hover.
+The day's drive on its own card, on every day with map data (days without a drive show a single pin at their place). Card stock, 10px border on three sides, the map framed by a 1px Hairline. Sea fills the frame; land in Land with a 1.2px Coast edge; the trip's other routes in Other Days grey (3px); this day's route in Day Ink (5.5px) over a 12px card-coloured casing. Numbered pins match the stop list on the back: open pins are card-filled with a 3px Day Ink ring and Day Ink numerals (r 14); the start and end pins are filled Day Ink with a card ring and white numerals (r 17). When pins are nudged apart, a 1.5px Day Ink leader runs from a small Day Ink anchor dot at the true location. The map carries its own `--day`, so it keeps its colour anywhere. Tapping the map opens it large in the viewer, like a photo (`cursor: zoom-in`; on hover the card lifts 4px). The caption row below (min 46px) holds the distance (in the trip's `units`, miles for Iceland) and stop count in condensed caps (Faded Ink) and "Open in Google Maps" with an outward arrow in Day Ink, underlined at 40% until hover.
 
 ### Postcard Back
-The written side. Card stock with the airmail chevron border, Print Ink text. The franking row along the top holds the stamp (86px, 104px wide) and, to its left, the day postmark with wavy cancellation lines running over the stamp. Then the headline, the message and the itinerary (numbered stops between hairlines, numerals in Day Ink; a Day Ink dot for a single place).
+The written side. Card stock with the airmail chevron border, Print Ink text. The franking row along the top holds the picture stamp (150px, 200px wide; tapping it opens the day's main photo) and, to its left, the day postmark whose short wavy cancellation lines clip the stamp's left edge. Then the headline, the message and the itinerary: numbered stops between hairlines, numerals in Day Ink (a Day Ink dot for a single place). Every stop is a link to that place alone in Google Maps (by its coordinates), with a faint outward arrow at the row's end; on hover the row takes Card Shade and the name and arrow turn Day Ink.
 
 ### Postmark
 A circular rubber stamp in SVG: the place around the top, measured facts around the bottom, a condensed label and an expanded big figure in the centre, optional wavy cancellation. Inked in the day colour on card backs, Airmail Blue for the whole trip on the cover map card. Only true measured facts go in the rings.
 
 ### Stamp
-A perforated picture stamp: a crop of the day's front photo (the trip cover on photo-less days), multiplied with 28% Day Ink, inside a white perforated margin. A white value numeral top left and the trip title in condensed caps, in Day Ink, along the bottom margin.
+A perforated picture stamp: a crop of the day's main photo (`cover: true` in trip.js; the trip cover on photo-less days), multiplied with 28% Day Ink, inside a white perforated margin. A white value numeral top left and the trip title in condensed caps, in Day Ink, along the bottom margin.
 
 ### Instant Film (all polaroids)
-Polaroids are their own paper, not card stock: `--polaroid` #f8f8f4 under a faint fibre noise and a slight top-to-bottom shading (`--polaroid-paper`), with a 1px hairline at the edge (6% navy). The photo sits slightly recessed: a 1px inner line and a soft inner shadow at the top, under a very faint diagonal gloss. The bottom strip carries the caption on the left (ellipsis when long) and a frame number on the right, like a film counter: `2 · 05` (day · photo) in postal caps at 0.7rem, in Day Ink, after a 5px dot. Polaroids without a caption still show the frame number, so the strip never reads as blank.
+Polaroids are their own paper, not card stock: `--polaroid` #f8f8f4 under a faint fibre noise and a slight top-to-bottom shading (`--polaroid-paper`), with a 1px hairline at the edge (6% navy). The photo sits slightly recessed: a 1px inner line and a soft inner shadow at the top, under a very faint diagonal gloss. The thick bottom strip carries the caption, if there is one, in Soft Ink, nothing else: no numbers or counters.
 
-### Polaroid Pile (phones, under 700px)
-All of the day's photos as one pile of identical polaroids (photo window about 1:1.06, filled by the photo; 8px border; 42px caption strip; card up to 340px wide), centred. The top polaroid sits at half its scatter angle with the card shadow; the next three peek out behind it, fanned to alternate sides (about +8.5°/+24px, −9.5°/−26px, +4°/+12px, plus each card's own jitter), at −4/12/22px vertically and 1.5% smaller per place. Swipe left (over 70px) flicks the top one off and brings up the next; swipe right brings the previous one back on top; vertical scrolling passes through. Below: the counter in postal caps (3 / 11) beside a faint hint, "Try swiping left and right" (0.8rem, Faint Table Ink). No arrow buttons; arrows appear only in the full-screen lightbox. The arrow keys flip the pile when the top polaroid has focus. A tap without a drag opens the lightbox with the full, uncropped photo. With reduced motion, cards change without flying.
+### Photo Pile
+A pile you flick through, in two looks: **polaroid** (instant film with its caption strip; each day's photos on phones under 700px, photo window about 1:1.06, card up to 330px) and **print** (card stock with an even 10px white border, no strip; the cover, every photo of the trip with the cover first, window 1:1.32, card up to 500px). Every card in a pile is the same format and the photo fills it; the full, uncropped photo is a tap away.
+
+Every card has its own character, seeded from its file name, so no two flicks look alike: its resting angle on top (±3.2°); where it peeks out underneath (to its own side, 3.5–12.5° and 8–34px, at its own height, spreading a little more the deeper it lies, with up to three showing); its pivot point; how much it tilts while dragged; and how it leaves (at 9–29°, rising or dropping up to 80px, over 220–360ms). A sideways drag over 70px flicks the top card off and brings up the next; the other way brings the previous one back on top. A plain tap opens the viewer, and vertical scrolling passes through. Under the pile, only a faint hint: "Try swiping left and right" on touch, "Drag the photo aside to flip through" with a mouse. No counter, no arrow buttons. The arrow keys flip the pile when the top card has focus. With reduced motion, cards change without flying.
 
 ### Polaroids (700px and up)
-Card stock with a 7px border (10px wide) and the thick polaroid bottom strip (34px, 46px wide), the caption written in that strip in Soft Ink. They sit in three masonry columns (from 700px; phones get the pile). Each photo keeps its natural aspect and drops into the shortest column, so order reads left to right. Each polaroid has a stable scatter seeded from its file name: up to ±4.2° of rotation, up to ±7% sideways off its column, a random stacking order, and a slight overlap with the one above (−14px phone, −6px wide). Hover or focus straightens it, scales it 1.03 and brings it to the top. Videos show a 52px card-white play badge in the centre. Every polaroid opens the lightbox.
+Card stock with a 7px border (10px wide) and the thick polaroid bottom strip (34px, 46px wide), the caption written in that strip in Soft Ink. They sit in three masonry columns (from 700px; phones get the pile). The strip shows the caption only. Each photo keeps its natural aspect and drops into the shortest column, so order reads left to right. Each polaroid has a stable scatter seeded from its file name: up to ±4.2° of rotation, up to ±7% sideways off its column, a random stacking order, and a slight overlap with the one above (−14px phone, −6px wide). Hover or focus straightens it, scales it 1.03 and brings it to the top. Videos show a 52px card-white play badge in the centre. Every polaroid opens the lightbox.
 
 ### Trip Road (progress)
 A winding road fixed at the right edge (vertically centred, clear of the day postmark above it) (66vh, max 580px), shown once the cover has scrolled away. It is drawn in SVG as an irregular winding line (drifting frequency, a swing that grows and shrinks into near-straight stretches, and a slight wobble): 72px wide on desktop (30px in from the edge) and 28px on phones (8px in), with a #c6cbc3 road (10px desktop, 6px phone) and a dashed card-white centre line. The road is split by length into one equal stretch per day; each stretch fills with that day's ink as the reader moves through the day. A disc marks each day's start on the road: hollow before, filled with Day Ink once reached. Desktop discs are 25px and numbered, with a card-stock tooltip of the day title opening to the left on hover or focus; phone discs are 11px dots. A red map pin (Airmail Red teardrop with a card-white outline and centre, 29 × 39 desktop, 19 × 25 phone) stands upright with its point on the road at the exact progress point.
 
 ### Trip Map Card (cover)
-Card stock with the airmail chevrons, the trip's land in Land and Coast on Sea, the route drawn in each day's ink over a 13px card-white underlay, and numbered day markers that grow on hover or focus (focus turns the marker's ring Signal Amber). The trip postmark sits over open sea. Under the map, a faint hint ("Tap a day to jump to it", 0.8rem) and an index of days: number disc, name, distance and a chevron, in 46px rows between hairlines. On hover or focus the row takes Card Shade, the name and chevron turn Day Ink, and the chevron nudges 3px right. The markers and the index are the trip's table of contents; there are no buttons.
+Card stock with the airmail chevrons, the trip's land in Land and Coast on Sea, the route drawn in each day's ink over a 13px card-white underlay, and numbered day markers that grow on hover or focus (focus turns the marker's ring Signal Amber). The trip postmark (trip title and year around the top, distance and stops around the bottom, the number of days in the centre) sits over open sea. Under the map, a faint hint ("Tap a day to jump to it", 0.8rem) and an index of days: number disc, name, distance and a chevron, in 46px rows between hairlines. On hover or focus the row takes Card Shade, the name and chevron turn Day Ink, and the chevron nudges 3px right. The markers and the index are the trip's table of contents; there are no buttons.
 
 ### Day Nav
 A fixed postmark-style disc in the top right (64px, 76px wide) that appears once the first day is reached. Card stock with two inset rings in the current day's ink, a condensed DAY label over the expanded day number, and the print shadow. The colour crossfades over 400ms as days change. It opens a card-stock dropdown listing the days (number discs, the current day in its ink).
 
 ### Lightbox
-A native `<dialog>` over a 94% deep-navy backdrop with a 10px blur. Media gets a 6px card-white border and the card shadow. Counter in condensed tabular caps, caption beside it, in white. Round 48px buttons in translucent white (10%, 22% on hover). Arrows sit at mid-height, moving to the bottom edge under 640px. Swipe and arrow keys step through, Escape closes.
+The viewer, like going through a camera roll: a native `<dialog>` on plain dark grey (#141414, the backdrop the same), with each photo shown as it is: no border, no frame, no shadow. Photos, videos and day maps (the map large, with its caption and an "Open in Google Maps" link) sit side by side in a horizontal scroll-snap track, so moving between them is a native swipe. Pinch, double-tap or double-click zooms (up to 4×) around that point; drag to look around; swiping between photos pauses while zoomed. Captions sit centred at the bottom in light grey; there is no counter. Round 46px buttons in translucent white: close top right always; previous and next arrows at mid-height only with a mouse on wider screens (the arrow keys work too). Escape closes.
 
 ### Motion
-One easing for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. **The deal:** as a day enters view, the front settles from about 9° off and 70px low over 900ms, the map card follows 45ms later (from 6° off, 80px low) and the back 90ms later (from 8° off, 90px low). At 620ms the postmark strikes (520ms: in at 1.6× scale, overshoots to 0.94, lands at its rest angle). All of this is gated on `prefers-reduced-motion`; without motion, cards simply sit at rest and the postmark is already there.
+One easing for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. **The deal:** as a day enters view, the written back settles from about 8° off and 80px low over 900ms and the map card follows 90ms later (from 7° off, 90px low). At 620ms the postmark strikes (520ms: in at 1.6× scale, overshoots to 0.94, lands at its rest angle). **The flick:** photo piles move each card in its own way (see Photo Pile); a card coming back into view glides in over 460ms. All of this is gated on `prefers-reduced-motion`; without motion, cards simply sit at rest and the postmark is already there.
 
 ## Do's and Don'ts
 
@@ -292,10 +270,10 @@ One easing for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. **The deal:** as a d
 - **Do** give every day with map data its own map card: its route in `--day` over a card casing, other days in Other Days grey, pins numbered to match the stop list, end pins filled.
 - **Do** take each day's colour from the build's generated `--day` ink and use it for every mark belonging to that day.
 - **Do** keep day hues outside OKLCH 205–300 and spread them as far apart as the photos allow (aim for 40°).
-- **Do** set place names in Archivo at 125% width, black weight, uppercase; set postal facts in Archivo at 75% width, tracked caps, tabular numerals.
+- **Do** set day titles in Archivo at 125% width, heavy, uppercase; set postal facts in Archivo at 75% width, tracked caps, tabular numerals.
 - **Do** rest cards and prints at small varied angles and let the cards of a spread overlap.
 - **Do** keep ink marks multiplied into the paper (`mix-blend-mode: multiply`, about 0.9 opacity) with broken rubber-stamp edges.
-- **Do** keep every photo reachable as a front or a print, each opening the lightbox.
+- **Do** keep every photo reachable in a pile or on the table, each opening the viewer; maps open there too.
 
 ### Don't:
 - **Don't** use handwriting or script fonts, tape, or cream or aged paper; the card stock is near-white (card).

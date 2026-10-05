@@ -19,9 +19,18 @@
   function openDay(day, i) {
     viewer = { items: day.media, index: i, heading: `Day ${day.n}: ${day.title}` }
   }
-  function openSingle(media, heading) {
-    viewer = { items: [media], index: 0, heading }
+  // Every photo of the trip, the cover first, for the pile on the cover.
+  const allMedia = [trip.cover, ...trip.days.flatMap((d) => d.media.filter((m) => m.kind === 'photo'))]
+  const allPhotos = allMedia.map((m, i) => ({ m, i }))
+
+  function openMap(day) {
+    viewer = {
+      items: [{ kind: 'map', day, caption: `Day ${day.n}: ${day.title}`, link: day.gmaps }],
+      index: 0,
+      heading: `Map of day ${day.n}`,
+    }
   }
+
 
   $effect(() => {
     const sections = trip.days.map((d) => document.getElementById(d.id))
@@ -47,7 +56,7 @@
 </script>
 
 <div id="top"></div>
-<Cover {trip} onopen={() => openSingle(trip.cover, trip.title)} />
+<Cover {trip} photos={allPhotos} onopen={(i) => (viewer = { items: allMedia, index: i, heading: trip.heading })} />
 <div bind:this={coverEnd} aria-hidden="true"></div>
 
 <main>
@@ -57,6 +66,7 @@
       {trip}
       layout={layouts[i]}
       onopen={(i) => openDay(day, i)}
+      onmap={() => openMap(day)}
     />
   {/each}
 </main>

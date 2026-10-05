@@ -3,12 +3,13 @@
   import Stamp from './Stamp.svelte'
   import Prints from './Prints.svelte'
   import MapCard from './MapCard.svelte'
+  import Icon from './Icon.svelte'
 
   // One day, sent home as a postcard: the printed back (postmark, a picture
   // stamp of the day's main photo, the message and the route) beside the
   // map of the day's drive, then all of the day's photos as polaroids.
   // `layout` puts the map on the left or the right on wide screens.
-  let { day, trip, layout = 'left', onopen } = $props()
+  let { day, trip, layout = 'left', onopen, onmap } = $props()
 
   let el
   let dealt = $state(false)
@@ -71,26 +72,34 @@
         <div class="address">
           <ol class="stops" aria-label="Route">
             {#each day.stops as s, i}
-              <li><span class="i">{i + 1}</span>{s}</li>
+              <li>
+                <a href={day.stopLinks[i]} target="_blank" rel="noopener" aria-label="{s}, open in Google Maps">
+                  <span class="i">{i + 1}</span><span class="stop">{s}</span><Icon name="arrow-out" size={15} class="out" />
+                </a>
+              </li>
             {/each}
           </ol>
         </div>
       {:else if day.place}
         <div class="address">
           <ol class="stops" aria-label="Where">
-            <li><span class="i dot" aria-hidden="true"></span>{day.place}</li>
+            <li>
+              <a href={day.stopLinks[0]} target="_blank" rel="noopener" aria-label="{day.place}, open in Google Maps">
+                <span class="i dot" aria-hidden="true"></span><span class="stop">{day.place}</span><Icon name="arrow-out" size={15} class="out" />
+              </a>
+            </li>
           </ol>
         </div>
       {/if}
     </article>
 
     {#if day.map}
-      <MapCard {day} unit={trip.unit} class="map" />
+      <MapCard {day} unit={trip.unit} onopen={onmap} class="map" />
     {/if}
   </div>
 
   {#if photos.length}
-    <Prints items={photos} {onopen} day={day.n} />
+    <Prints items={photos} {onopen} />
   {/if}
 </section>
 
@@ -218,14 +227,46 @@
     border-top: 1px solid var(--rule);
   }
   .stops li {
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-    padding: 9px 0 7px;
     border-bottom: 1px solid var(--rule);
     font-size: 0.98rem;
     font-weight: 560;
     line-height: 1.3;
+  }
+  /* Every stop opens on its own in Google Maps. */
+  .stops a {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    min-height: 40px;
+    padding: 9px 2px 7px;
+    text-decoration: none;
+    transition: background 200ms;
+  }
+  .stop {
+    flex: 1;
+  }
+  .stops a :global(.out) {
+    align-self: center;
+    color: var(--on-ground-faint);
+    opacity: 0.55;
+    transition:
+      opacity 200ms,
+      color 200ms,
+      translate 200ms var(--ease-out);
+  }
+  .stops a:hover,
+  .stops a:focus-visible {
+    background: var(--card-shade);
+  }
+  .stops a:hover .stop,
+  .stops a:focus-visible .stop {
+    color: var(--day);
+  }
+  .stops a:hover :global(.out),
+  .stops a:focus-visible :global(.out) {
+    opacity: 1;
+    color: var(--day);
+    translate: 2px -2px;
   }
   .i {
     flex: none;
