@@ -132,7 +132,7 @@
 <style>
   .rail {
     position: fixed;
-    z-index: 9;
+    z-index: 100;
     right: 8px;
     top: 50%;
     height: min(66vh, 580px);

@@ -41,7 +41,7 @@
 <style>
   .daynav {
     position: fixed;
-    z-index: 10;
+    z-index: 110;
     top: max(12px, env(safe-area-inset-top));
     right: 12px;
     opacity: 0;

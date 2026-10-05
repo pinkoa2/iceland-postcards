@@ -37,7 +37,7 @@
     </div>
 
     <div class="stack">
-      <PolaroidDeck items={photos} {onopen} variant="print" ratio={1.32} maxW={500} />
+      <PolaroidDeck items={photos} {onopen} variant="print" ratio={1.32} maxW={500} inset={84} />
     </div>
 
     <nav class="card mapcard" aria-label="Days of the trip">
@@ -69,6 +69,8 @@
 
 <style>
   .cover {
+    position: relative;
+    isolation: isolate;
     padding: clamp(28px, 5vw, 64px) var(--gutter) 0;
     max-width: 1520px;
     margin: 0 auto;

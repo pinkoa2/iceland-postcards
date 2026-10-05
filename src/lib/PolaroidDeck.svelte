@@ -8,7 +8,8 @@
   // caption strip, the day piles) and `print` (an even white border, the
   // cover). Every card has its own resting angle, place in the pile, pivot
   // and throw, so no two flicks look alike.
-  let { items, onopen, variant = 'polaroid', ratio = 1.06, maxW = 330 } = $props()
+  // `inset` is the room kept free at the sides for cards peeking out.
+  let { items, onopen, variant = 'polaroid', ratio = 1.06, maxW = 330, inset = 56 } = $props()
 
   let width = $state(0)
   let index = $state(0)
@@ -21,7 +22,7 @@
   const print = $derived(variant === 'print')
   const PAD = $derived(print ? 10 : 8)
   const STRIP = $derived(print ? PAD : 42)
-  const cardW = $derived(Math.round(Math.min(width - 56, maxW)))
+  const cardW = $derived(Math.round(Math.min(width - inset, maxW)))
   const photoH = $derived(Math.round((cardW - PAD * 2) * ratio))
   const H = $derived(photoH + PAD + STRIP + 56)
 
@@ -36,8 +37,9 @@
     const r = (s) => rand(src, s)
     const side = r(9) < 0.5 ? -1 : 1
     return {
-      rest: (r(1) * 2 - 1) * 3.2, // angle when on top
-      under: { r: side * (3.5 + r(2) * 9), x: side * (8 + r(3) * 26), y: -10 + r(4) * 34 },
+      // Kept modest so a card never swings out to the screen edge.
+      rest: (r(1) * 2 - 1) * 2.2, // angle when on top
+      under: { r: side * (2 + r(2) * 4.5), x: side * (6 + r(3) * 12), y: -8 + r(4) * 26 },
       pivot: `${25 + r(5) * 50}% ${55 + r(6) * 40}%`,
       tilt: 0.025 + r(7) * 0.04, // degrees per pixel dragged
       out: { r: 9 + r(8) * 20, y: -70 + r(10) * 150, t: 220 + Math.round(r(11) * 140) },
@@ -49,7 +51,7 @@
   function place(k, c) {
     if (k === 0) return { r: c.rest, x: 0, y: 0 }
     // Deeper cards spread a little further.
-    const f = 0.75 + Math.min(k, 3) * 0.18
+    const f = 0.8 + Math.min(k, 3) * 0.1
     return { r: c.under.r * f, x: c.under.x * f, y: c.under.y + k * 3 }
   }
   const reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches

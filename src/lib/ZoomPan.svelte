@@ -115,8 +115,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /* Leave horizontal swipes to the viewer until zoomed in. */
-    touch-action: pan-x;
+    /* The viewer handles every gesture itself (swipe, pinch, pan). */
+    touch-action: none;
     cursor: zoom-in;
   }
   .zoom.zoomed {

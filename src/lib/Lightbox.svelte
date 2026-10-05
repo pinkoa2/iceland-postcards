@@ -6,37 +6,101 @@
 
   // The full-screen viewer, like going through a camera roll: each photo (or
   // a day's map) shown as it is on a plain dark-grey ground. Swipe sideways
-  // between them; pinch or double-tap to zoom. Desktop also gets arrows and
-  // the arrow keys. Built on <dialog>, so focus is trapped and restored.
+  // between them; the roll loops, so it keeps going round however fast you
+  // swipe. Pinch or double-tap to zoom. Desktop also gets arrows and the arrow
+  // keys. Built on <dialog>, so focus is trapped and restored.
   let { items = [], index = $bindable(null), heading = '' } = $props()
 
   let dialog
-  let track = $state()
+  let stage = $state()
   let current = $state(0)
   let zoomed = $state(false)
-  let zooms = []
+  let zooms = {}
+
+  // The current photo and its neighbours round the loop, each placed one
+  // screen-width apart; `dx` slides them all together.
+  let dx = $state(0)
+  let animating = $state(false)
+  let pending = 0 // step waiting to be committed when the slide finishes
+  let timer = 0
+  const DURATION = 280
+
+  const n = $derived(items.length)
+  const mod = (k) => ((k % n) + n) % n
+  const visible = $derived.by(() => {
+    if (n === 1) return [{ k: current, pos: 0 }]
+    if (n === 2) {
+      // Only one other photo: put it on the side it's coming from.
+      const side = pending || (dx > 0 ? -1 : 1)
+      return [{ k: current, pos: 0 }, { k: mod(current + 1), pos: side }]
+    }
+    return [
+      { k: mod(current - 1), pos: -1 },
+      { k: current, pos: 0 },
+      { k: mod(current + 1), pos: 1 },
+    ]
+  })
 
   $effect(() => {
     if (!dialog) return
     if (index !== null && !dialog.open) {
       dialog.showModal()
       current = index
-      tick().then(() => track && (track.scrollLeft = index * track.clientWidth))
+      dx = 0
     }
     if (index === null && dialog.open) dialog.close()
   })
 
-  function onscroll() {
-    const k = Math.round(track.scrollLeft / track.clientWidth)
-    if (k !== current) {
+  // Finish any slide in progress straight away.
+  function commit() {
+    clearTimeout(timer)
+    if (pending) {
       zooms[current]?.reset()
-      current = k
+      current = mod(current + pending)
+      pending = 0
+    }
+    animating = false
+    dx = 0
+  }
+
+  function go(step) {
+    if (n < 2) return
+    commit()
+    pending = step
+    animating = true
+    dx = -step * stage.clientWidth
+    timer = setTimeout(commit, DURATION)
+  }
+
+  // Dragging sideways (one finger or the mouse), unless zoomed in.
+  let drag = null
+  function down(e) {
+    if (n < 2 || zoomed || e.button > 0) return
+    if (drag) return (drag = null) // a second finger: that's a pinch
+    commit()
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, axis: null, t: Date.now() }
+  }
+  function move(e) {
+    if (!drag || e.pointerId !== drag.id) return
+    const mx = e.clientX - drag.x
+    const my = e.clientY - drag.y
+    if (!drag.axis && Math.hypot(mx, my) > 8) drag.axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y'
+    if (drag.axis === 'x') dx = mx
+  }
+  function up(e) {
+    if (!drag || e.pointerId !== drag.id) return
+    const fast = Math.abs(dx) / Math.max(1, Date.now() - drag.t) > 0.4
+    const far = Math.abs(dx) > stage.clientWidth * 0.18
+    const wasX = drag.axis === 'x'
+    drag = null
+    if (wasX && (far || (fast && Math.abs(dx) > 30))) go(dx < 0 ? 1 : -1)
+    else {
+      animating = true
+      dx = 0
+      timer = setTimeout(() => (animating = false), DURATION)
     }
   }
-  function go(step) {
-    const k = Math.max(0, Math.min(items.length - 1, current + step))
-    track.scrollTo({ left: k * track.clientWidth, behavior: 'smooth' })
-  }
+
   function onkeydown(e) {
     if (e.key === 'ArrowRight') go(1)
     else if (e.key === 'ArrowLeft') go(-1)
@@ -46,21 +110,28 @@
 
 <dialog bind:this={dialog} aria-label={heading} onclose={() => (index = null)} {onkeydown}>
   {#if index !== null}
-    <div class="track" class:locked={zoomed} bind:this={track} {onscroll}>
-      {#each items as it, k}
-        <div class="slide">
-          {#if Math.abs(k - current) <= 2}
-            <ZoomPan bind:this={zooms[k]} bind:zoomed>
-              {#if it.kind === 'map'}
-                <div class="map"><DayMap day={it.day} /></div>
-              {:else if it.kind === 'video' && k === current}
-                <!-- svelte-ignore a11y_media_has_caption -->
-                <video src={it.video} poster={it.src} controls autoplay playsinline></video>
-              {:else}
-                <img src={it.src} srcset={it.srcset} sizes="100vw" alt={it.alt} width={it.w} height={it.h} style="background-image: url({it.placeholder})" draggable="false" />
-              {/if}
-            </ZoomPan>
-          {/if}
+    <div
+      class="stage"
+      bind:this={stage}
+      onpointerdown={down}
+      onpointermove={move}
+      onpointerup={up}
+      onpointercancel={up}
+      role="presentation"
+    >
+      {#each visible as { k, pos } (k)}
+        {@const it = items[k]}
+        <div class="slide" class:animating style="transform: translateX(calc({pos * 100}% + {dx}px))">
+          <ZoomPan bind:this={zooms[k]} bind:zoomed>
+            {#if it.kind === 'map'}
+              <div class="map"><DayMap day={it.day} /></div>
+            {:else if it.kind === 'video' && k === current}
+              <!-- svelte-ignore a11y_media_has_caption -->
+              <video src={it.video} poster={it.src} controls autoplay playsinline></video>
+            {:else}
+              <img src={it.src} srcset={it.srcset} sizes="100vw" alt={it.alt} width={it.w} height={it.h} style="background-image: url({it.placeholder})" draggable="false" />
+            {/if}
+          </ZoomPan>
         </div>
       {/each}
     </div>
@@ -73,8 +144,8 @@
     {/if}
 
     {#if items.length > 1}
-      <button class="nav prev" type="button" onclick={() => go(-1)} disabled={current === 0} aria-label="Previous"><Icon name="chevron-left" size={26} /></button>
-      <button class="nav next" type="button" onclick={() => go(1)} disabled={current === items.length - 1} aria-label="Next"><Icon name="chevron-right" size={26} /></button>
+      <button class="nav prev" type="button" onclick={() => go(-1)} aria-label="Previous"><Icon name="chevron-left" size={26} /></button>
+      <button class="nav next" type="button" onclick={() => go(1)} aria-label="Next"><Icon name="chevron-right" size={26} /></button>
     {/if}
     <button class="close" type="button" onclick={() => dialog.close()} aria-label="Close"><Icon name="close" size={24} /></button>
   {/if}
@@ -104,29 +175,21 @@
       opacity: 0;
     }
   }
-  .track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-  .track::-webkit-scrollbar {
-    display: none;
-  }
-  .track.locked {
-    overflow-x: hidden;
+  .stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
   }
   .slide {
-    flex: none;
-    width: 100%;
-    height: 100%;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
+    position: absolute;
+    inset: 0;
     padding: max(56px, env(safe-area-inset-top)) 0 64px;
+    will-change: transform;
+  }
+  .slide.animating {
+    transition: transform 280ms var(--ease-out);
   }
   img,
   video {

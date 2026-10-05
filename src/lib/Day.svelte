@@ -106,6 +106,8 @@
 <style>
   .day {
     position: relative;
+    /* Cards and polaroids layer among themselves, never over the road or nav. */
+    isolation: isolate;
     max-width: 1240px;
     margin: 0 auto;
     padding: clamp(72px, 11vw, 150px) var(--gutter) 0;
