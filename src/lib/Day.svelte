@@ -182,7 +182,7 @@
     padding: 0;
     border: 0;
     background: none;
-    cursor: zoom-in;
+    cursor: pointer;
     transition:
       rotate 300ms var(--ease-out),
       scale 300ms var(--ease-out);

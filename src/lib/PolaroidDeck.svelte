@@ -229,7 +229,7 @@
     border: 0;
     text-align: left;
     box-shadow: var(--shadow-print);
-    cursor: zoom-in;
+    cursor: pointer;
   }
   .top button {
     box-shadow: var(--shadow-card);

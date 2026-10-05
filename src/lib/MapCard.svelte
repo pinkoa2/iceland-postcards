@@ -41,7 +41,7 @@
     padding: 0;
     border: 1px solid var(--rule);
     background: none;
-    cursor: zoom-in;
+    cursor: pointer;
   }
   .mapcard:has(.mapview:hover),
   .mapcard:has(.mapview:focus-visible) {

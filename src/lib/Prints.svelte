@@ -103,7 +103,7 @@
     border: 0;
     text-align: left;
     box-shadow: var(--shadow-print);
-    cursor: zoom-in;
+    cursor: pointer;
     transition: box-shadow 350ms var(--ease-out);
   }
   li:hover button,

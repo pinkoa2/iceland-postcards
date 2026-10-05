@@ -117,7 +117,7 @@
     overflow: hidden;
     /* The viewer handles every gesture itself (swipe, pinch, pan). */
     touch-action: none;
-    cursor: zoom-in;
+    cursor: default;
   }
   .zoom.zoomed {
     touch-action: none;

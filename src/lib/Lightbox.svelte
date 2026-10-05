@@ -12,6 +12,11 @@
   let { items = [], index = $bindable(null), heading = '' } = $props()
 
   let dialog
+  // Whether the viewer was opened by touch or mouse rather than the keyboard:
+  // then no focus ring shows on the close button or, after closing, on the
+  // photo that was tapped.
+  let byPointer = true
+  let opener = null
   let stage = $state()
   let current = $state(0)
   let zoomed = $state(false)
@@ -44,7 +49,9 @@
   $effect(() => {
     if (!dialog) return
     if (index !== null && !dialog.open) {
+      opener = document.activeElement
       dialog.showModal()
+      if (byPointer) dialog.focus()
       current = index
       dx = 0
     }
@@ -101,6 +108,12 @@
     }
   }
 
+  function closed() {
+    index = null
+    if (byPointer && opener?.isConnected) opener.focus({ preventScroll: true, focusVisible: false })
+    opener = null
+  }
+
   function onkeydown(e) {
     if (e.key === 'ArrowRight') go(1)
     else if (e.key === 'ArrowLeft') go(-1)
@@ -108,7 +121,9 @@
   const item = $derived(items[current])
 </script>
 
-<dialog bind:this={dialog} aria-label={heading} onclose={() => (index = null)} {onkeydown}>
+<svelte:window onpointerdowncapture={() => (byPointer = true)} onkeydowncapture={() => (byPointer = false)} />
+
+<dialog bind:this={dialog} tabindex="-1" aria-label={heading} onclose={closed} {onkeydown}>
   {#if index !== null}
     <div
       class="stage"
@@ -163,6 +178,9 @@
     color: #f2f2f2;
     background: #141414;
     overscroll-behavior: contain;
+  }
+  dialog:focus {
+    outline: none;
   }
   dialog::backdrop {
     background: #141414;

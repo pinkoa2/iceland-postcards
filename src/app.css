@@ -64,6 +64,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /* No grey flash over whatever a finger taps. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
