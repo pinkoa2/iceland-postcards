@@ -1,14 +1,13 @@
-// Turns trips/<id>/ into everything the page needs at build time:
-//   .trailmark/<id>/public/   responsive WebP sizes, videos, link-preview image
-//   .trailmark/<id>/trip.json the manifest the Svelte app imports
+// Turns content/ into everything the page needs at build time:
+//   .generated/public/   responsive WebP sizes, videos, link-preview image
+//   .generated/trip.json the manifest the Svelte app imports
 // Road routes are fetched once from the public OSRM server and cached in
-// trips/<id>/routes.json, so CI builds never hit the network.
+// content/routes.json, so CI builds never hit the network.
 //
-// Usage: TRIP=iceland-2026 node scripts/prepare-trip.js
+// Usage: npm run prepare-trip (dev and build run it first)
 
 import fs from 'node:fs/promises'
 import { existsSync, statSync } from 'node:fs'
-import { resolveTripId } from './trip-id.js'
 import path from 'node:path'
 import { pathToFileURL, fileURLToPath } from 'node:url'
 import sharp from 'sharp'
@@ -22,10 +21,9 @@ const VIDEO = /\.(mp4|mov|webm|m4v)$/i
 const GROUND_HUE = [215, 290]
 const FALLBACK_HUES = [25, 145, 300, 55, 175, 340, 95]
 
-const id = resolveTripId()
-const tripDir = path.join(root, 'trips', id)
+const tripDir = path.join(root, 'content')
 const mediaDir = path.join(tripDir, 'media')
-const outDir = path.join(root, '.trailmark', id)
+const outDir = path.join(root, '.generated')
 const pubDir = path.join(outDir, 'public')
 const trip = (await import(pathToFileURL(path.join(tripDir, 'trip.js')).href + `?t=${Date.now()}`)).default
 
@@ -37,7 +35,7 @@ const fresh = (src, out) => existsSync(out) && statSync(out).mtimeMs >= statSync
 
 async function image(rel) {
   const src = path.join(mediaDir, rel)
-  if (!existsSync(src)) throw new Error(`Missing media file: trips/${id}/media/${rel}`)
+  if (!existsSync(src)) throw new Error(`Missing media file: content/media/${rel}`)
   const meta = await sharp(src).rotate().metadata()
   // .rotate() bakes orientation; width/height may be swapped by EXIF.
   const turned = (meta.orientation ?? 1) >= 5
@@ -147,7 +145,7 @@ async function route(stops) {
   if (routeCache[key]) return routeCache[key]
   const url = `https://router.project-osrm.org/route/v1/driving/${key}?overview=full&geometries=geojson`
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'trailmark-travelogue' } })
+    const res = await fetch(url, { headers: { 'User-Agent': 'iceland-postcards' } })
     const json = await res.json()
     if (json.code !== 'Ok') throw new Error(json.code)
     const r = json.routes[0]
@@ -266,7 +264,7 @@ const toUnit = (km) => Math.round(unit === 'mi' ? km * 0.621371 : km)
 
 // ---------- assemble ----------
 
-console.log(`Preparing trip "${id}"`)
+console.log('Preparing the trip')
 
 const days = []
 const allRouteLines = []
@@ -462,7 +460,6 @@ const totals = {
 }
 
 const manifest = {
-  id,
   title: trip.title,
   heading: trip.heading ?? trip.title,
   year: trip.year ?? null,

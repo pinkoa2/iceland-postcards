@@ -1,4 +1,4 @@
-// Iceland 2026 — the trip content. The engine never hardcodes any of this.
+// Iceland 2026: all of the trip's content. The page's code reads it from here.
 //
 // Photos live in ./media/ and are referenced relative to it. Mark one photo per
 // day `cover: true` to put it on the postcard front (defaults to the first).

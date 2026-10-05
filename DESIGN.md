@@ -1,6 +1,6 @@
 ---
-name: Trailmark
-description: Each trip told home as postcard spreads (a day map and a written back with a picture stamp) and piles of photos, laid out on a pale paper table.
+name: Iceland Postcards
+description: Our Iceland roadtrip told home as postcard spreads (a day map and a written back with a picture stamp) and piles of photos, laid out on a pale paper table.
 colors:
   title: "#1b3a8c"
   airmail-red: "#d4332b"
@@ -110,17 +110,17 @@ components:
     size: "48px"
 ---
 
-# Design System: Trailmark
+# Design System: Iceland Postcards
 
 ## Overview
 
 **Creative North Star: "Postcards Home"**
 
-Every trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue, with the kind of trip and its year stamped in red beside a strip of airmail. Under it lies a pile of printed photos, every photo of the trip with the cover on top, to flick through. Each day arrives as a two-card spread: a map card showing that day's drive, and a written back carrying a rubber-stamp postmark, a large perforated picture stamp of the day's main photo, the message and the itinerary. The cards lie together, never hidden behind a flip. All of the day's photos follow as polaroids: on phones, one swipeable pile; on wider screens, tipped out onto the table in masonry columns, each photo at its natural shape and its own small angle. A winding road at the right edge fills day by day in each day's ink as you scroll, with a red map pin marking where you are. Tapping any photo or map opens it on a plain dark ground, like a camera roll.
+The trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue, with the kind of trip and its year stamped in red beside a strip of airmail. Under it lies a pile of printed photos, every photo of the trip with the cover on top, to flick through. Each day arrives as a two-card spread: a map card showing that day's drive, and a written back carrying a rubber-stamp postmark, a large perforated picture stamp of the day's main photo, the message and the itinerary. The cards lie together, never hidden behind a flip. All of the day's photos follow as polaroids: on phones, one swipeable pile; on wider screens, tipped out onto the table in masonry columns, each photo at its natural shape and its own small angle. A winding road at the right edge fills day by day in each day's ink as you scroll, with a red map pin marking where you are. Tapping any photo or map opens it on a plain dark ground, like a camera roll.
 
 The world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: wide, heavy lettering for the trip name and day titles, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.
 
-The engine runs many trips, so the system is defined by roles and rules, not by any one country. The table, the card stock, the title blue and the airmail chevrons stay fixed. Day colours, stamps, maps and place names are generated per trip.
+The table, the card stock, the title blue and the airmail chevrons are fixed. Day colours, stamps and maps are generated from the trip's photos and route at build time.
 
 **Key Characteristics:**
 - Pale cool paper table with a faint fibre; every surface on it is a piece of card stock or a print.
@@ -165,7 +165,7 @@ A fixed airmail palette (pale table, near-white card, blue lettering, red and bl
 
 **The Clear Of Airmail Rule.** Day hues are sampled from the photos and must sit outside the airmail blue range (hues 205–300 in OKLCH, which is 215–290 plus 10° of margin), so a day's marks never read as the trip-level blue of the title, chevrons and trip postmark. They are spread as far apart as the photos allow, aiming for at least 40°. If a day's photos give no usable hue, it is nudged up to 45° from its own photo hues, then falls back to a fixed list. A trip author can override a day's colour; the rules still apply around it.
 
-**The Fixed Table Rule.** The table, card stock, title blue and chevrons are the same on every trip. A new trip's photo palette changes the day inks, never the table or the stationery.
+**The Fixed Table Rule.** The table, card stock, title blue and chevrons are fixed. The photos' palette sets the day inks, never the table or the stationery.
 
 ## Typography
 
@@ -282,6 +282,6 @@ One easing for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. **The deal:** as a d
 - **Don't** round the corners of cards or prints.
 - **Don't** hide any card of a day's spread behind a flip, hover or tap.
 - **Don't** use a day's ink for another day, or a fixed brand accent where a day colour belongs.
-- **Don't** let a trip's photos change the table, card stock, title blue or chevrons.
+- **Don't** let the photos change the table, card stock, title blue or chevrons.
 - **Don't** use grey or glowing shadows; shadows are light navy-tinted paper shadows.
 - **Don't** use Signal Amber (focus) for anything except focus.

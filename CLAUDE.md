@@ -1,20 +1,20 @@
-# Trailmark
+# Iceland Postcards
 
-Scroll-down travelogues built with Svelte 5 + Vite, one static site per trip. Iceland 2026 is the first trip, live at `iceland.pinkoa2.lol`.
+Our 2026 Iceland roadtrip as a scroll-down travelogue, built with Svelte 5 + Vite as one static site, live at `iceland.pinkoa2.lol`. It is Iceland-only: future trips get their own projects and designs, so nothing here needs to be reusable.
 
 ## Read first
 
 - `PRODUCT.md`: who it's for, what it must do, constraints, the content workflow.
 - `DESIGN.md`: the design system ("Postcards Home"): tokens, components, rules. Keep it true to the code.
 - `.impeccable/surfaces/src-app-svelte.md`: the page's design plan (direction contract).
-- `README.md`: how to run, build, add a trip, deploy.
+- `README.md`: how to run, build, edit the content, deploy.
 
 ## Layout of the repo
 
-- `trips/<id>/trip.js` is the only place trip content lives (title, heading, year, units, days, stops, captions, main photos). Media sits in `trips/<id>/media/day-N/`. `routes.json` caches road routes (commit it).
-- `scripts/prepare-trip.js` runs before dev/build: resizes photos to WebP, fetches and caches OSRM routes, draws maps from Natural Earth, samples day colours, builds Google Maps links, writes `og.jpg` and `CNAME`. Its output goes to `.trailmark/<id>/` (gitignored).
-- `src/` is the engine. Nothing trip-specific may be hardcoded there.
-- Deploy: `.github/workflows/deploy.yml` builds `TRIP=iceland-2026` and publishes to GitHub Pages on every push to `main`, so pushing to `main` updates the live site.
+- `content/trip.js` is the only place trip content lives (title, heading, year, units, days, stops, captions, main photos). Media sits in `content/media/day-N/`. `routes.json` caches road routes (commit it).
+- `scripts/prepare-trip.js` runs before dev/build: resizes photos to WebP, fetches and caches OSRM routes, draws maps from Natural Earth, samples day colours, builds Google Maps links, writes `og.jpg` and `CNAME`. Its output goes to `.generated/` (gitignored).
+- `src/` is the page. Keep words, places and photos in `content/`, not in components.
+- Deploy: `.github/workflows/deploy.yml` builds the site and publishes `dist/` to GitHub Pages on every push to `main`, so pushing to `main` updates the live site.
 
 ## Working with the user
 

@@ -1,6 +1,6 @@
 node_modules
 dist
-.trailmark
+.generated
 .impeccable/review
 *.local
 .DS_Store

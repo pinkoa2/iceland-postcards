@@ -1,10 +1,10 @@
 # Trip page (the travelogue)
 
-Scope: the single scrolling page every trip builds to (`src/App.svelte` and its components). Mode: Experience. The trip's photos lead from the first viewport (a pile of every photo on the cover).
+Scope: the single scrolling page of the Iceland trip (`src/App.svelte` and its components). Mode: Experience. The trip's photos lead from the first viewport (a pile of every photo on the cover).
 
 Audience and job: friends and family opening a shared link (mostly on phones) to feel the trip in a few minutes; the travellers reliving it. Phone and desktop are equally designed.
 
-Constraints: nothing important hides behind a flip; every photo is reachable by scrolling or swiping a pile; trip content comes only from `trips/<id>/trip.js`.
+Constraints: nothing important hides behind a flip; every photo is reachable by scrolling or swiping a pile; trip content comes only from `content/trip.js`.
 
 ## Direction contract
 

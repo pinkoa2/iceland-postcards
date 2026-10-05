@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-04T20:58:21+00:00",
-  "title": "Design System: Trailmark",
+  "title": "Design System: Iceland Postcards",
   "extensions": {
     "colorMeta": {
       "title": {
@@ -449,7 +449,7 @@
   ],
   "narrative": {
     "northStar": "Postcards Home",
-    "overview": "Every trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue. Each day arrives as a three-card spread: a photo front with an even white border and the place printed across it, a map card showing that day's drive, and a printed back carrying a rubber-stamp postmark, a perforated picture stamp, the message and the itinerary. All the cards lie together, overlapping, never hidden behind a flip. The rest of the day's photos spill out below as loose prints at small, varied angles.\n\nThe world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: expanded heavy caps for place names, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.\n\nThe engine runs many trips, so the system is defined by roles and rules, not by any one country. The table, the card stock, the title blue and the airmail chevrons stay fixed. Day colours, stamps, maps and place names are generated per trip.",
+    "overview": "The trip is a bundle of picture postcards and airmail sent home, laid out on a pale, cool paper table. The trip's name is lettered across the top in airmail blue. Each day arrives as a three-card spread: a photo front with an even white border and the place printed across it, a map card showing that day's drive, and a printed back carrying a rubber-stamp postmark, a perforated picture stamp, the message and the itinerary. All the cards lie together, overlapping, never hidden behind a flip. The rest of the day's photos spill out below as loose prints at small, varied angles.\n\nThe world is physical but crisp: near-white card stock with real thickness, light navy-tinted paper shadows on the table, red-white-blue airmail chevrons around every card back, and rubber-stamp ink with uneven pressure. One type family, Archivo, does all the lettering by moving along its width axis: expanded heavy caps for place names, condensed tracked caps for postal marks and measured facts. Colour comes from the trip itself. Each day gets one stamp colour sampled from its own photos, and that colour marks the day everywhere it appears, including its route on the map.\n\nThe table, the card stock, the title blue and the airmail chevrons are fixed. Day colours, stamps and maps are generated from the trip's photos and route at build time.",
     "keyCharacteristics": [
       "Pale cool paper table with a faint fibre; every surface on it is a piece of card stock or a print.",
       "Airmail blue is lettering and ink, not a field: the title, the chevrons, the trip postmark.",
@@ -472,7 +472,7 @@
       },
       {
         "name": "The Fixed Table Rule",
-        "body": "The table, card stock, title blue and chevrons are the same on every trip. A new trip's photo palette changes the day inks, never the table or the stationery.",
+        "body": "The table, card stock, title blue and chevrons are fixed. The photos' palette sets the day inks, never the table or the stationery.",
         "section": "colors"
       },
       {
@@ -524,7 +524,7 @@
       "**Don't** round the corners of cards or prints.",
       "**Don't** hide any card of a day's spread behind a flip, hover or tap.",
       "**Don't** use a day's ink for another day, or a fixed brand accent where a day colour belongs.",
-      "**Don't** let a trip's photos change the table, card stock, title blue or chevrons.",
+      "**Don't** let the photos change the table, card stock, title blue or chevrons.",
       "**Don't** use grey or glowing shadows; shadows are light navy-tinted paper shadows.",
       "**Don't** use Signal Amber (focus) for anything except focus."
     ]

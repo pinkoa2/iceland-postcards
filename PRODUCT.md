@@ -21,18 +21,17 @@ Phone and desktop are weighted equally: each gets a deliberately designed layout
 
 ## Product Purpose
 
-Trailmark turns one trip into a scroll-down travelogue: a single page that tells the trip day by day as a journey, with routes, short write-ups, photos and videos. Success means a friend scrolls to the end and feels the trip, and the travellers want to come back to it.
-
-Trailmark is a reusable engine, not a one-off. Iceland 2026 is the first trip; future trips (e.g. Taiwan) get added as content, not as new code.
+Iceland Postcards turns our 2026 Iceland roadtrip into a scroll-down travelogue: a single page that tells the trip day by day as a journey, with routes, short write-ups, photos and videos. Success means a friend scrolls to the end and feels the trip, and the travellers want to come back to it.
 
 ## Positioning
 
-A personal, journey-shaped record of one specific trip: the route across the map, in the order it happened, told through the travellers' own photos. It is not a photo dump, a social feed or a generic blog template.
+A personal, journey-shaped record of this one trip: the route across the map, in the order it happened, told through the travellers' own photos. It is not a photo dump, a social feed or a generic blog template.
 
 ## Operating Context
 
-- **One repo, many trips.** The engine lives once; each trip is a content folder (one data file plus its media), e.g. `trips/iceland-2026/`. A design fix reaches every trip.
-- **Each trip deploys to its own subdomain** of `pinkoa2.lol` (domain at Porkbun). `iceland.pinkoa2.lol` deploys from this repo (`pinkoa2/trailmark-iceland-2026`) to GitHub Pages on every push to `main`. Future trips follow the same pattern (`taiwan.pinkoa2.lol`). Builds take a trip identifier and produce one standalone static site. GitHub Pages allows one custom domain per repo, so the host for a second trip (Cloudflare/Netlify projects vs. per-trip Pages repos) is not decided yet.
+- **Iceland only.** This site is for the Iceland trip alone. Future trips get their own projects with their own designs and layouts; nothing here needs to be reusable.
+- **Content lives apart from the code.** `content/` holds one data file (`trip.js`), the media and the cached routes; the page reads them at build time.
+- **Deploys to `iceland.pinkoa2.lol`** (domain at Porkbun) from this repo (`pinkoa2/iceland-postcards`) to GitHub Pages on every push to `main`.
 - **Content workflow:** photos are dropped into a per-day folder and named in lowercase-hyphenated form after their confirmed caption. Captions are assigned one photo at a time with the user ("keep / skip / replace"). Media is compressed before commit (auto-orient, max 2000px, EXIF/GPS stripped, quality 85). Videos are kept as-is, with ffmpeg poster frames.
 
 ## Capabilities and Constraints
@@ -47,7 +46,7 @@ A personal, journey-shaped record of one specific trip: the route across the map
 
 ## Evidence on Hand
 
-Iceland 2026 content, in `trips/iceland-2026/` (`trip.js`, `media/`, `routes.json`), carried over from the first version of the site:
+Iceland 2026 content, in `content/` (`trip.js`, `media/`, `routes.json`), carried over from the first version of the site:
 
 - 7 days, with titles and descriptions already written: 1 Arrival & Blue Lagoon, 2 The Golden Circle, 3 South Coast Waterfalls, 4 Glacier Ice Caves, 5 Reynisfjara & Vík, 6 Last Day in Reykjavík (no drive), 7 Heading Home (Reykjavík → Keflavík Airport, no photos).
 - 38 compressed photos and 4 videos with posters (3 on day 2, 1 on day 3), with confirmed captions and filenames.
@@ -60,5 +59,5 @@ Iceland 2026 content, in `trips/iceland-2026/` (`trip.js`, `media/`, `routes.jso
 1. **The trip is the interface.** Photos, places and the route lead; UI chrome recedes.
 2. **A journey, not a list.** Show progression through space and time, so the reader always knows where on the trip they are.
 3. **Skimmable and complete.** A friend can get the highlights in minutes; the travellers can find every photo.
-4. **Content, not code.** Adding a trip means adding a folder. Nothing Iceland-specific is hardcoded in the engine.
+4. **Content, not code.** Words, places and photos live in `content/`, so editing the trip never means editing components.
 5. **Fast on a phone over cellular.**
