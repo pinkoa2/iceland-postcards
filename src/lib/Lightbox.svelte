@@ -119,6 +119,47 @@
     else if (e.key === 'ArrowLeft') go(-1)
   }
   const item = $derived(items[current])
+
+  // While a full-size photo downloads, the copy the page already showed sits
+  // underneath, so the photo is there at once and only sharpens. `loaded` and
+  // `failed` are per photo; `tries` remounts one to try it again. Only when
+  // neither copy loads does the viewer say so.
+  let loaded = $state({})
+  let failed = $state({})
+  let previewFailed = $state({})
+  let tries = $state({})
+  function preview(it) {
+    const shown = [...document.images].find((img) => img.srcset === it.srcset && img.complete && img.naturalWidth)
+    return shown?.currentSrc || it.srcset.split(' ')[0]
+  }
+  function retry(k) {
+    failed[k] = false
+    previewFailed[k] = false
+    tries[k] = (tries[k] || 0) + 1
+  }
+
+  // The open video: 'loading' until it plays, 'waiting' when it stalls,
+  // 'blocked' when the browser won't autoplay it, 'failed' when it can't load.
+  let video = $state('loading')
+  function startVideo(el) {
+    video = 'loading'
+    el.play().catch((err) => {
+      if (err.name === 'NotAllowedError') video = 'blocked'
+    })
+  }
+  let videoEl = $state()
+  function retryVideo() {
+    video = 'loading'
+    videoEl.load()
+    startVideo(videoEl)
+  }
+
+  const slow = $derived(
+    item?.kind === 'photo'
+      ? !loaded[current] && !failed[current]
+      : item?.kind === 'video' && (video === 'loading' || video === 'waiting'),
+  )
+  const broken = $derived(item?.kind === 'photo' ? failed[current] && previewFailed[current] : item?.kind === 'video' && video === 'failed')
 </script>
 
 <svelte:window onpointerdowncapture={() => (byPointer = true)} onkeydowncapture={() => (byPointer = false)} />
@@ -142,14 +183,70 @@
               <div class="map"><DayMap day={it.day} /></div>
             {:else if it.kind === 'video' && k === current}
               <!-- svelte-ignore a11y_media_has_caption -->
-              <video src={it.video} poster={it.src} controls autoplay playsinline></video>
-            {:else}
+              <video
+                bind:this={videoEl}
+                src={it.video}
+                poster={it.src}
+                controls
+                playsinline
+                {@attach startVideo}
+                onplaying={() => (video = 'playing')}
+                onwaiting={() => (video = 'waiting')}
+                onpause={() => video === 'playing' && (video = 'paused')}
+                onerror={() => (video = 'failed')}
+              ></video>
+            {:else if it.kind === 'video'}
               <img src={it.src} srcset={it.srcset} sizes="100vw" alt={it.alt} width={it.w} height={it.h} style="background-image: url({it.placeholder})" draggable="false" />
+            {:else}
+              {#key tries[k]}
+                <div class="photo">
+                  <img
+                    src={preview(it)}
+                    alt=""
+                    width={it.w}
+                    height={it.h}
+                    style="background-image: url({it.placeholder})"
+                    draggable="false"
+                    onerror={() => (previewFailed[k] = true)}
+                  />
+                  <img
+                    class="full"
+                    class:ready={loaded[k]}
+                    src={it.src}
+                    srcset={it.srcset}
+                    sizes="100vw"
+                    alt={it.alt}
+                    width={it.w}
+                    height={it.h}
+                    draggable="false"
+                    onload={() => (loaded[k] = true)}
+                    onerror={() => (failed[k] = true)}
+                  />
+                </div>
+              {/key}
             {/if}
           </ZoomPan>
         </div>
       {/each}
     </div>
+
+    {#if slow}
+      <div class="loading" role="status">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+          <circle cx="11" cy="11" r="8.5" />
+          <circle class="arc" cx="11" cy="11" r="8.5" />
+        </svg>
+        <span class="visually-hidden">Loading</span>
+      </div>
+    {/if}
+    {#if broken}
+      <div class="problem" role="alert">
+        <p>Couldn’t load this {item.kind}.</p>
+        <button type="button" onclick={() => (item.kind === 'video' ? retryVideo() : retry(current))}>Try again</button>
+      </div>
+    {:else if item?.kind === 'video' && video === 'blocked'}
+      <button class="play" type="button" onclick={() => videoEl.play()} aria-label="Play video"><Icon name="play" size={34} /></button>
+    {/if}
 
     {#if item?.caption || item?.link}
       <p class="caption">
@@ -220,6 +317,100 @@
     background-size: cover;
     user-select: none;
     -webkit-user-drag: none;
+  }
+  .photo {
+    display: grid;
+  }
+  .photo > img {
+    grid-area: 1 / 1;
+  }
+  .full {
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+  .full.ready {
+    opacity: 1;
+  }
+  /* Only shows when loading is slow, so quick loads never flash it. */
+  .loading {
+    position: fixed;
+    top: max(10px, env(safe-area-inset-top));
+    left: 10px;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.08);
+    pointer-events: none;
+    animation: appear 240ms 500ms var(--ease-out) both;
+  }
+  .loading circle {
+    fill: none;
+    stroke: rgb(255 255 255 / 0.18);
+    stroke-width: 2;
+  }
+  .loading .arc {
+    stroke: #f2f2f2;
+    stroke-linecap: round;
+    stroke-dasharray: 14 60;
+    transform-origin: center;
+    animation: spin 900ms linear infinite;
+  }
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .loading .arc {
+      animation: pulse 1.6s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      to {
+        opacity: 0.3;
+      }
+    }
+  }
+  .problem {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: rgb(20 20 20 / 0.82);
+    text-align: center;
+  }
+  .problem button {
+    position: static;
+    width: auto;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 22px;
+    font-weight: 600;
+  }
+  .play {
+    top: 50%;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    translate: -50% -50%;
+    background: rgb(20 20 20 / 0.55);
+    backdrop-filter: blur(6px);
+  }
+  .play:hover {
+    background: rgb(20 20 20 / 0.7);
   }
   .map {
     width: min(100vw, calc((100dvh - 120px) * 4 / 3), 1400px);
