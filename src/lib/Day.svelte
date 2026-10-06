@@ -156,7 +156,8 @@
     justify-self: center;
     width: calc(100% - 6px);
     max-width: 640px;
-    margin-top: 22px;
+    /* Clear table between the cards, even at their tilts: they never touch. */
+    margin-top: 44px;
     rotate: var(--tm);
     transition:
       rotate 900ms var(--ease-out) 90ms,
@@ -339,6 +340,7 @@
     .pair {
       grid-template-columns: 1fr 1fr;
       grid-template-areas: 'back map';
+      column-gap: clamp(40px, 4.5vw, 72px);
       align-items: start;
     }
     .right .pair {
@@ -352,14 +354,14 @@
       grid-area: map;
       justify-self: start;
       width: 100%;
-      margin: var(--by) 0 0 -4%;
+      margin: var(--by) 0 0;
     }
     .right .back {
       justify-self: start;
     }
     .right .pair :global(.map) {
       justify-self: end;
-      margin: var(--by) -4% 0 0;
+      margin: var(--by) 0 0;
     }
     :global(.motion) .right:not(.dealt) .back {
       translate: 8% 80px;

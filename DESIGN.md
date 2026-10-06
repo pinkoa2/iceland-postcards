@@ -194,17 +194,17 @@ A fixed airmail palette (pale table, near-white card, blue lettering, red and bl
 
 Single scrolling column of days on the table, gutters of `clamp(16px, 4vw, 56px)`. The cover is capped at 1520px wide, days at 1320px. Days are separated by `clamp(72px, 11vw, 150px)` of open table, and each day's spread has `clamp(40px, 5vw, 72px)` below it before its prints.
 
-**Phone (below 960px):** day sections take 26px on the left and 46px on the right (a lane for the trip road). Each day stacks: the written back (up to 620px) first, so the day opens on its title, stamp and story; the map card 22px below; then the polaroid pile. On the cover: the trip name and trip line, the summary, the pile of printed photos, then the trip map card 18px below.
+**Phone (below 960px):** day sections take 26px on the left and 46px on the right (a lane for the trip road). Each day stacks: the written back (up to 620px) first, so the day opens on its title, stamp and story; the map card 44px below (enough open table that the tilted corners never meet); then the polaroid pile. On the cover: the trip name and trip line, the summary, the pile of printed photos, then the trip map card 18px below.
 
-**Wide (960px and up):** each day lays its map card and written back side by side in two equal columns, alternating sides from day to day (`left`: back left, map right; `right`: mirrored). The map is dropped by a per-day offset (2–11vh) and pulled 4% toward the back. On the cover, the photo pile takes the left column (1.1fr) and the summary and trip map card share the right.
+**Wide (960px and up):** each day lays its map card and written back side by side in two equal columns, alternating sides from day to day (`left`: back left, map right; `right`: mirrored). The columns are `clamp(40px, 4.5vw, 72px)` apart and the map is dropped by a per-day offset (2–11vh). On the cover, the photo pile takes the left column (1.1fr) and the summary and trip map card share the right.
 
 **Polaroids:** a swipeable pile under 700px; scattered masonry columns (three) from 700px. Nothing scrolls sideways.
 
-**The Side By Side Rule.** Every card of a day's spread (map and back) is visible together. Nothing important sits behind a flip, a tap or a hover.
+**The Side By Side Rule.** Every card of a day's spread (map and back) is visible together, and the two never touch or overlap. Nothing important sits behind a flip, a tap or a hover.
 
 ## Elevation & Depth
 
-Depth is physical paper, not UI elevation. Every card shows its own edge (two 1px solid steps in pale grey) and then casts a light, layered navy-tinted shadow onto the table. Cards rest at small angles (±1–9°) so the overlaps read as a spread of real cards; within a spread the back sits above the map, the map above the front. Ink marks (postmarks) sit on the paper with `mix-blend-mode: multiply` at about 0.9 opacity, not above it.
+Depth is physical paper, not UI elevation. Every card shows its own edge (two 1px solid steps in pale grey) and then casts a light, layered navy-tinted shadow onto the table. Cards rest at small angles (±1–9°) so they read as real cards laid on the table. Ink marks (postmarks) sit on the paper with `mix-blend-mode: multiply` at about 0.9 opacity, not above it.
 
 ### Shadow Vocabulary
 - **Card stock** (`--shadow-card`): card backs, map cards, the top photo of every pile, the nav dropdown, and polaroids on hover. The card's two-step edge plus three soft navy-tinted shadows (10–28% alpha) of increasing spread.
@@ -271,7 +271,7 @@ One easing for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. **The deal:** as a d
 - **Do** take each day's colour from the build's generated `--day` ink and use it for every mark belonging to that day.
 - **Do** keep day hues outside OKLCH 205–300 and spread them as far apart as the photos allow (aim for 40°).
 - **Do** set day titles in Archivo at 125% width, heavy, uppercase; set postal facts in Archivo at 75% width, tracked caps, tabular numerals.
-- **Do** rest cards and prints at small varied angles and let the cards of a spread overlap.
+- **Do** rest cards and prints at small varied angles, with open table between the map card and the written back (user decision: they never touch).
 - **Do** keep ink marks multiplied into the paper (`mix-blend-mode: multiply`, about 0.9 opacity) with broken rubber-stamp edges.
 - **Do** keep every photo reachable in a pile or on the table, each opening the viewer; maps open there too.
 
